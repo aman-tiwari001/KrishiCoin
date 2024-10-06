@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 const features = [
   {
@@ -59,10 +60,9 @@ const LadderFeature = ({ title, description, index }) => {
       {/* Feature description */}
       <div className="ml-11 bg-cyan-00 text-left">
         <h3 className="text-2xl font-bold text-gray-800">{title}</h3>
-          <p className="text-gray-600 w-[46vw]  bg-slate-100 p-3 rounded-e-2xl rounded-b-2xl border-gray-100 border-[10px] mt-2">
-            {description}
-          </p>
-        
+        <p className="text-gray-600 w-[46vw]  bg-slate-100 p-3 rounded-e-2xl rounded-b-2xl border-gray-100 border-[10px] mt-2">
+          {description}
+        </p>
       </div>
     </motion.div>
   );
@@ -71,13 +71,14 @@ const LadderFeature = ({ title, description, index }) => {
 const LandingPage = () => {
   return (
     <div className="min-h-screen bg-white text-gray-900">
-        <div className="z-0 absolute h-screen w-screen">
-          <img className=" h-screen w-screen" src="https://www.deere.co.in/assets/images/region-1/products/John%20Deere_Website%20Creatives_Tractor%20Finance_Internal.jpg" />
-        </div>
-        <div className=" z-20 absolute top-0 bg-gradient-to-r from-green-400 to-blue-500 opacity-[0.6] h-screen w-screen flex items-center justify-center">
-        </div>
+      <div className="z-0 absolute h-screen w-screen">
+        <img
+          className=" h-screen w-screen"
+          src="https://www.deere.co.in/assets/images/region-1/products/John%20Deere_Website%20Creatives_Tractor%20Finance_Internal.jpg"
+        />
+      </div>
+      <div className=" z-20 absolute top-0 bg-gradient-to-r from-green-400 to-blue-500 opacity-[0.6] h-screen w-screen flex items-center justify-center"></div>
       <section className="h-screen flex items-center justify-center">
-        
         <div className="text-center z-50">
           <motion.h1
             className="text-7xl font-bold text-white"
@@ -100,7 +101,7 @@ const LandingPage = () => {
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.2 }}
           >
-            Get Started
+            <Link to="/home">Get Started</Link>
           </motion.button>
         </div>
       </section>
