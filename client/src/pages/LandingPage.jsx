@@ -71,16 +71,16 @@ const LadderFeature = ({ title, description, index }) => {
 const LandingPage = () => {
   return (
     <div className="min-h-screen bg-white text-gray-900">
-        <div className="z-0 absolute">
-          <img src="https://www.deere.co.in/assets/images/region-1/products/John%20Deere_Website%20Creatives_Tractor%20Finance_Internal.jpg" />
+        <div className="z-0 absolute h-screen w-screen">
+          <img className=" h-screen w-screen" src="https://www.deere.co.in/assets/images/region-1/products/John%20Deere_Website%20Creatives_Tractor%20Finance_Internal.jpg" />
         </div>
-        <div className=" z-50 absolute top-0 bg-gradient-to-r from-green-400 to-blue-500 h-screen flex items-center justify-center">
+        <div className=" z-20 absolute top-0 bg-gradient-to-r from-green-400 to-blue-500 opacity-[0.6] h-screen w-screen flex items-center justify-center">
         </div>
-      <section className=" z-50 bg-gradient-to-r from-green-400 to-blue-500 h-screen flex items-center justify-center">
+      <section className="h-screen flex items-center justify-center">
         
         <div className="text-center z-50">
           <motion.h1
-            className="text-5xl font-bold text-white"
+            className="text-7xl font-bold text-white"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
@@ -88,7 +88,7 @@ const LandingPage = () => {
             Welcome to KrishiCoin
           </motion.h1>
           <motion.p
-            className="mt-4 text-xl text-gray-100"
+            className="mt-4 text-2xl text-gray-100"
             initial={{ x: "-100vw" }}
             animate={{ x: 0 }}
             transition={{ type: "spring", delay: 0.5 }}
