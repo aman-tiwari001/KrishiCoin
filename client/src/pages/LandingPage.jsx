@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import ConnectWalletBtn from '../components/ConnectWalletBtn';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import { useWalletStore } from '../store/WalletStore';
 
 const features = [
 	{
@@ -71,9 +72,11 @@ const LadderFeature = ({ title, description, index }) => {
 
 const LandingPage = () => {
 	const navigate = useNavigate();
+	const setAddress = useWalletStore((state) => state.setAddress);
 	const walletSuccessHandler = (address) => {
 		console.log(`Wallet connected: ${address}`);
-		navigate('/home');
+		setAddress(address);
+		navigate('/get-basename');
 	};
 	const walletErrorHandler = (error) => {
 		console.error(`Wallet connection error: ${error.message}`);
