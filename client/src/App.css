@@ -32,3 +32,11 @@ body {
   background-position: center;
   background-repeat: no-repeat; 
 }
+
+.cards2-bg {
+  background-image: url("https://thumbs.dreamstime.com/b/cartoon-farmers-group-farm-family-working-man-woman-agricultural-workers-garden-community-agriculture-harvesting-decent-vector-218451287.jpg"); 
+  background-size: cover;
+  background-position: center -10px; /* 50px from the top and centered horizontally */
+  background-repeat: no-repeat; 
+}
+
