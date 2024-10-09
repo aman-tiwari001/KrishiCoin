@@ -4,8 +4,8 @@ import { useWalletStore } from '../store/WalletStore';
 import { Link } from 'react-router-dom';
 
 const BaseName = () => {
-	const address = useWalletStore((state) => state.address);
-	console.log('BaseName:', address);
+	const address =
+		useWalletStore((state) => state.address) || localStorage.getItem('base-wallet-address');
 	return (
 		<div>
 			<div className='flex items-center space-x-2 p-2'>
@@ -19,9 +19,9 @@ const BaseName = () => {
 					</a>
 				</span>
 			</div>
-			<h2 className='text-5xl text-center my-10 text-blue-600'>
+			<h2 className='text-5xl text-center my-14 text-blue-600'>
 				Your Basename
-			</h2>
+			</h2>5
 			{address && (
 				<div className='flex gap-2 items-center border-2 w-48 mx-auto border-black rounded-full py-1 px-2'>
 					<Avatar address={address} chain={base} />
@@ -32,7 +32,7 @@ const BaseName = () => {
 				</div>
 			)}
 
-			<p className='w-[50%] mx-auto text-left my-10 text-gray-500'>
+			<p className='w-[50%] max-sm:w-[85%] mx-auto text-left my-10 text-gray-500'>
 				Basename is your human-readable name on the Base blockchain. It is just
 				a representation of your wallet address. If you don&apos;t have basename
 				then get yours{' '}

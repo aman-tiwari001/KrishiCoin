@@ -1,9 +1,10 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import ConnectWalletBtn from '../components/ConnectWalletBtn';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { useWalletStore } from '../store/WalletStore';
+import { useAccount } from 'wagmi';
 
 const features = [
 	{
@@ -74,14 +75,21 @@ const LandingPage = () => {
 	const navigate = useNavigate();
 	const setAddress = useWalletStore((state) => state.setAddress);
 	const walletSuccessHandler = (address) => {
-		console.log(`Wallet connected: ${address}`);
 		setAddress(address);
+		localStorage.setItem('base-wallet-address', address);
 		navigate('/get-basename');
 	};
 	const walletErrorHandler = (error) => {
 		console.error(`Wallet connection error: ${error.message}`);
-    alert('Wallet connection error. Please try again.');
+		alert('Wallet connection error. Please try again.');
 	};
+
+	const account = useAccount();
+	useEffect(() => {
+		if (account.isConnected || localStorage.getItem('base-wallet-address')) {
+			navigate('/home');
+		}
+	}, []);
 
 	return (
 		<div className='min-h-screen bg-white text-gray-900'>
