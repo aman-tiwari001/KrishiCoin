@@ -37,7 +37,7 @@ function RightCards() {
         </div>
         <div className="w-1/4 h-2/3 md:h-full  rounded-2xl cards3-bg flex flex-col items-center justify-center shadow-lg">
           <div className="w-[100%] h-[100%] z-50 bg-black flex flex-col items-center justify-center shadow-lg opacity-[0.7] px-4 py-6 rounded-2xl  ">
-          <h2 className="text-white top-4 text-xl font-bold">Marketplace</h2>
+          <h2 className="text-white top-4 max-md:text-sm text-md font-bold">P2P Marketplace</h2>
             
           </div>
 

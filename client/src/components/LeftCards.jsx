@@ -12,7 +12,7 @@ function LeftCards() {
 
       {/* 2 small cards */}
       <div className="flex w-full h-1/2 gap-2">
-        <div className="w-1/2 h-full bg-[#283618] rounded-2xl px-2 py-6 flex flex-col items-start justify-center shadow-lg">
+        <div className="w-1/2 h-full bg-[#283618] rounded-2xl px-10 max-md:px-4 py-6 flex flex-col items-start justify-center shadow-lg">
           <h2 className="text-[#e0fce7] text-[20px] md:text-xl font-semibold mb-4">
             Make a Donation
           </h2>
