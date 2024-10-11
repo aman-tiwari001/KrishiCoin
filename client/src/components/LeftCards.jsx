@@ -17,7 +17,7 @@ function LeftCards() {
             Make a Donation
           </h2>
           <p className="text-[#e0fce7] mb-4 text-[15px] md:text-[13px]">
-            Be the one to make the change in people's lives
+            Be the one to make the change in people&apos;s lives
           </p>
           <button className="bg-white text-[#24843E] font-bold py-2 px-6 rounded-full shadow transition duration-300 hover:bg-gray-200">
             Donate Now

@@ -32,15 +32,12 @@ function RightCards() {
         <div className="w-1/4 h-2/3 md:h-full bg-[#A9D6E5] rounded-2xl  flex flex-col justify-evenly shadow-lg">
           <div className="w-[100%] h-[100%] z-50 bg-gradient-to-br from-[#71aad2] to-[#203673] flex flex-col items-center justify-center shadow-lg opacity-[0.8] px-4 py-6 rounded-2xl  ">
             <h2 className="text-[#e0fce7] text-xl font-bold">Sell Crops</h2>
-            
           </div>
         </div>
         <div className="w-1/4 h-2/3 md:h-full  rounded-2xl cards3-bg flex flex-col items-center justify-center shadow-lg">
           <div className="w-[100%] h-[100%] z-50 bg-black flex flex-col items-center justify-center shadow-lg opacity-[0.7] px-4 py-6 rounded-2xl  ">
           <h2 className="text-white top-4 max-md:text-sm text-md font-bold">P2P Marketplace</h2>
-            
           </div>
-
         </div>
       </div>
     </div>
