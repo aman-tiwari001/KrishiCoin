@@ -28,7 +28,7 @@ function CampaignCard({ title, totaldays, target, amtfunded, author, image, star
           <h3 className="text-sm ">
             {percfunded}% Funded
           </h3>
-          <button className="btn bg-[#778457] text-[#e0fce7] ">Contribute Now</button>
+          <button className="btn border-0 bg-[#778457] text-[#e0fce7] ">Contribute Now</button>
         </div>
 
       </div>

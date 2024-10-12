@@ -5,8 +5,9 @@ import { Home } from "./pages/Home";
 import LandingPage from "./pages/LandingPage";
 import BaseName from "./pages/BaseName";
 import SellPage from "./pages/SellPage";
-import Donation from "./pages/Donation";
+import Donation from "./pages/DonationPage";
 import { Toaster } from 'react-hot-toast';
+import CampaignForm from "./components/CampaignForm";
 
 function App() {
   const location = useLocation();
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/get-basename" element={<BaseName />} />
           <Route path="/sell" element={<SellPage />} />
+          <Route path="/campaignform" element={<CampaignForm />} />
           <Route path="/donate" element={<Donation />} />
         </Routes>
       </main>
