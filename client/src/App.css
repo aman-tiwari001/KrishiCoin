@@ -55,3 +55,7 @@ body {
   background-position: center ; /* 50px from the top and centered horizontally */
   background-repeat: no-repeat; 
 }
+
+.h-screen-minus-80 {
+  height: calc(100vh - 80px);
+}

@@ -5,7 +5,7 @@ import { Home } from "./pages/Home";
 import LandingPage from "./pages/LandingPage";
 import BaseName from "./pages/BaseName";
 import SellPage from "./pages/SellPage";
-import Donation from "./pages/Donation";
+import Donation from "./pages/DonationPage";
 
 function App() {
   const location = useLocation();
