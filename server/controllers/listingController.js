@@ -2,10 +2,10 @@ const Listing = require('../models/listing');
 const User = require('../models/user');
 
 // List agricultural items
-// req.body: { title, desc, price, total_stock, images, location, listing_id }
+// req.body: { title, desc, price, total_stock, images, location }
 // res: listing
 exports.createListing = async (req, res) => {
-  const { title, desc, price, total_stock, images, location, listing_id } =
+  const { title, desc, price, total_stock, images, location } =
     req.body;
 
   try {
@@ -16,7 +16,6 @@ exports.createListing = async (req, res) => {
       total_stock,
       images,
       location,
-      listing_id
     });
     await listing.save();
 

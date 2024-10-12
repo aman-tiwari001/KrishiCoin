@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken');
 // res: { token }
 exports.connectWallet = async (req, res) => {
   const { wallet_address, name, basename, phone } = req.body;
-
   try {
     let user = await User.findOne({ wallet_address });
     if (!user) {
