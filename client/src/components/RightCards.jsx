@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function RightCards() {
   return (
     <div className="w-full md:w-[60%] h-[50vh] flex flex-col gap-2 md:py-4">
@@ -22,21 +24,25 @@ function RightCards() {
       <div className="flex w-full h-1/2 gap-2">
         <div className="w-2/4 h-2/3 md:h-full bg-[#A9D6E5] rounded-2xl  flex flex-col justify-evenly shadow-lg">
           <div className="w-[100%] h-[100%] z-50 bg-gradient-to-br from-[#A4C8E1] to-[#5a8cbc] flex flex-col items-center justify-center shadow-lg opacity-[0.8] px-4 py-6 rounded-2xl  ">
-            <h2 className="text-white text-xl font-bold">Sell Your Crops</h2>
+            <h2 className="text-white text-xl font-bold">Start Your Fundraiser</h2>
             <p className="text-white text-[10px] md:text-[15px]">
-              Connect directly with lenders. Get better rates and flexible
-              terms.
+            Launch your fundraiser to rally support and collect funds for your cause!
             </p>
           </div>
         </div>
-        <div className="w-1/4 h-2/3 md:h-full bg-[#A9D6E5] rounded-2xl  flex flex-col justify-evenly shadow-lg">
-          <div className="w-[100%] h-[100%] z-50 bg-gradient-to-br from-[#71aad2] to-[#203673] flex flex-col items-center justify-center shadow-lg opacity-[0.8] px-4 py-6 rounded-2xl  ">
-            <h2 className="text-[#e0fce7] text-xl font-bold">Sell Crops</h2>
+        <Link
+          to="/sell"
+          className="w-1/4 h-2/3 cards4-bg md:h-full bg-[#A9D6E5] rounded-2xl flex flex-col justify-evenly shadow-lg"
+        >
+          <div className="w-[100%] h-[100%] z-50 bg-black flex flex-col items-center justify-center shadow-lg opacity-[0.55] px-4 py-6 rounded-2xl">
+            <h2 className="text-white text-xl font-bold">Sell Crops</h2>
           </div>
-        </div>
+        </Link>
         <div className="w-1/4 h-2/3 md:h-full  rounded-2xl cards3-bg flex flex-col items-center justify-center shadow-lg">
           <div className="w-[100%] h-[100%] z-50 bg-black flex flex-col items-center justify-center shadow-lg opacity-[0.7] px-4 py-6 rounded-2xl  ">
-          <h2 className="text-white top-4 max-md:text-sm text-md font-bold">P2P Marketplace</h2>
+            <h2 className="text-white top-4 max-md:text-sm text-md font-bold">
+              P2P Marketplace
+            </h2>
           </div>
         </div>
       </div>

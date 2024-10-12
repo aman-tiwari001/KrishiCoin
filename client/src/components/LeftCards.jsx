@@ -30,7 +30,7 @@ function LeftCards() {
               Add Funds to your wallet
             </h2>
 
-            <button className="bg-gradient-to-bl from-[#7C5D25] to-[#C9A53D] text-white font-bold py-2 px-8 rounded-full shadow transition duration-300 hover:bg-gray-800">
+            <button className="bg-gradient-to-bl btn border-0 from-[#7C5D25] to-[#C9A53D] text-white font-bold py-2 px-8 rounded-full shadow transition duration-300 hover:bg-gray-800">
               Add Funds
             </button>
           </div>

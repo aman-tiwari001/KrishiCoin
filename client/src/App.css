@@ -48,3 +48,10 @@ body {
   background-position: center ; /* 50px from the top and centered horizontally */
   background-repeat: no-repeat; 
 }
+
+.cards4-bg {
+  background-image: url("https://img.freepik.com/premium-vector/businessman-hands-hold-bags-grain_284092-2007.jpg"); 
+  background-size: cover;
+  background-position: center ; /* 50px from the top and centered horizontally */
+  background-repeat: no-repeat; 
+}

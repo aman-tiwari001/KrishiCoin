@@ -5,8 +5,8 @@ const SellPage = () => {
     title: "",
     description: "",
     images: [],
-    quantity: 50, 
-    pricePerUnit: 0, 
+    quantity: 50,
+    pricePerUnit: 0,
     city: "",
     state: "",
   });
@@ -43,13 +43,13 @@ const SellPage = () => {
       city: "",
       state: "",
     });
-    setImagePreviews([]); 
+    setImagePreviews([]);
   };
 
   return (
     <div className="flex max-md:flex-row h-screen items-center p-5">
-      <div className="w-1/2 max-md:w-full md:sticky mt-[60px] bg-[#283e2f] text-[#bcdef0] self-start border-2 rounded-3xl px-2">
-        <h2 className="text-3xl font-semibold mt-3 p-2 text-center md:text-left">
+      <div className="w-1/2  max-md:w-full md:sticky mt-[80px] bg-[#283e2f] text-[#bcdef0] self-start border-2 rounded-3xl px-2">
+        <h2 className="text-2xl font-medium mt-3 p-2 text-center md:text-left">
           List New Item
         </h2>
         <hr />
@@ -57,33 +57,38 @@ const SellPage = () => {
           onSubmit={handleSubmit}
           className="space-y-4 overflow-scroll h-[70vh] p-2"
         >
-          <div>
-            <label htmlFor="title" className="block text-sm font-medium">
-              Title
-            </label>
-            <input
-              type="text"
-              name="title"
-              placeholder="Enter Title"
-              id="title"
-              value={formData.title}
-              onChange={handleInputChange}
-              className="mt-1 block w-full px-3 bg-white text-black py-2 border rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
-            />
-          </div>
+          <div className="flex gap-5 w-full">
+            <div className="w-[35%] ">
+              <label htmlFor="title" className="block text-sm font-medium">
+                Title
+              </label>
+              <input
+                type="text"
+                name="title"
+                placeholder="Enter Title"
+                id="title"
+                value={formData.title}
+                onChange={handleInputChange}
+                className="mt-1 flex w-[100%] px-3 h-[60%] bg-white text-black py-2 border rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
+              />
+            </div>
 
-          <div>
-            <label htmlFor="description" className="block text-sm font-medium">
-              Description
-            </label>
-            <textarea
-              name="description"
-              id="description"
-              placeholder="Enter the description in detail ..."
-              value={formData.description}
-              onChange={handleInputChange}
-              className="mt-1 block w-full px-3 py-2 bg-white text-black border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
+            <div className=" w-[55%]">
+              <label
+                htmlFor="description"
+                className="block text-sm font-medium"
+              >
+                Description
+              </label>
+              <textarea
+                name="description"
+                id="description"
+                placeholder="Enter the description in detail ..."
+                value={formData.description}
+                onChange={handleInputChange}
+                className="mt-1 flex w-[100%] bg-white px-3 py-2 text-black border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
           </div>
 
           <div>
@@ -110,34 +115,39 @@ const SellPage = () => {
             </div>
           </div>
 
-          <div>
-            <label htmlFor="quantity" className="block text-sm font-medium">
-              Quantity (in multiples of 50kg)
-            </label>
-            <input
-              type="number"
-              name="quantity"
-              id="quantity"
-              value={formData.quantity}
-              onChange={handleInputChange}
-              min="50"
-              step="50"
-              className="mt-1 block w-full px-3 bg-white text-black py-2 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
-          </div>
+          <div className="flex gap-5">
+            <div>
+              <label htmlFor="quantity" className="block text-sm font-medium">
+                Quantity (in multiples of 50kg)
+              </label>
+              <input
+                type="number"
+                name="quantity"
+                id="quantity"
+                value={formData.quantity}
+                onChange={handleInputChange}
+                min="50"
+                step="50"
+                className="mt-1 block w-full px-3 bg-white text-black py-2 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
 
-          <div>
-            <label htmlFor="pricePerUnit" className="block text-sm font-medium">
-              Price Per 50kg
-            </label>
-            <input
-              type="number"
-              name="pricePerUnit"
-              id="pricePerUnit"
-              value={formData.pricePerUnit}
-              onChange={handleInputChange}
-              className="mt-1 block w-full px-3 bg-white text-black py-2 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
+            <div>
+              <label
+                htmlFor="pricePerUnit"
+                className="block text-sm font-medium"
+              >
+                Price Per 50kg
+              </label>
+              <input
+                type="number"
+                name="pricePerUnit"
+                id="pricePerUnit"
+                value={formData.pricePerUnit}
+                onChange={handleInputChange}
+                className="mt-1 block w-full px-3 bg-white text-black py-2 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
           </div>
 
           <div>

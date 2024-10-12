@@ -4,7 +4,7 @@ import RightCards from "../components/RightCards";
 
 export const Home = () => {
   return (
-    <div className="px-4 pt-[66px]">
+    <div className=" h-screen pt-[75px] over px-2 flex flex-col ">
       <Banner />
       <div className="flex max-md:flex-col md:gap-4">
         <LeftCards />

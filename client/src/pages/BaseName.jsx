@@ -19,7 +19,7 @@ const BaseName = () => {
 					</a>
 				</span>
 			</div>
-			<h2 className='text-5xl text-center my-14 text-blue-600'>
+			<h2 className='text-5xl text-center my-14 text-[#283e2f]'>
 				Your Basename
 			</h2>5
 			{address && (
@@ -46,7 +46,7 @@ const BaseName = () => {
 				</a>
 				<br />
 				<Link to={'/home'}>
-					<button className='btn my-10 btn-primary bg-blue-500'>Proceed</button>
+					<button className='btn my-10 btn-primary text-white outline-lime-900 bg-[#283e2f]'>Proceed</button>
 				</Link>
 			</p>
 		</div>
