@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { createListing } from "../apis/listing";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 const SellPage = () => {
   const {
     register,
@@ -11,7 +13,7 @@ const SellPage = () => {
   } = useForm();
   const [imagePreviews, setImagePreviews] = useState([]);
   const [listings, setListings] = useState([]);
-
+  const navigate = useNavigate();
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
     const previews = files.map((file) => URL.createObjectURL(file));
@@ -47,13 +49,13 @@ const SellPage = () => {
       };
 
       const newListing = await createListing(payload);
-      setListings([...listings, newListing]);
-      console.log("New Listing:", newListing);
-
       reset();
       setImagePreviews([]);
+      toast.success("Listing created successfully");
+      navigate("/");
     } catch (error) {
       console.error("Error creating listing:", error);
+      toast.error("Error creating listing");
     }
   };
 

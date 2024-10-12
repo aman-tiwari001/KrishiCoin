@@ -5,7 +5,8 @@ import { Home } from "./pages/Home";
 import LandingPage from "./pages/LandingPage";
 import BaseName from "./pages/BaseName";
 import SellPage from "./pages/SellPage";
-import Donation from "./pages/DonationPage";
+import Donation from "./pages/Donation";
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const location = useLocation();
@@ -18,6 +19,7 @@ function App() {
       {shouldShowNavbar && <Navbar />}
       <main>
         <Routes>
+  
           <Route path="/home" element={<Home />} />
           <Route path="/" element={<LandingPage />} />
           <Route path="/get-basename" element={<BaseName />} />
@@ -32,6 +34,7 @@ function App() {
 export default function MainApp() {
   return (
     <BrowserRouter>
+      <Toaster/>
       <App />
     </BrowserRouter>
   );
