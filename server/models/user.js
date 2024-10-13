@@ -16,7 +16,7 @@ const UserSchema = new mongoose.Schema({
     amount: { type: Number, required: true },
     quantity: { type: Number, required: true },
     delivery_location: { type: String, required: true },
-    status: { type: Boolean, required: true, default: false }  // true: delivered and confirmed, false: not delivered
+    status: { type: Boolean, required: true, default: false }  
   }]
 });
 

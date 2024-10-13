@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function RightCards() {
   return (
@@ -22,14 +22,18 @@ function RightCards() {
 
       {/* 3 small cards */}
       <div className="flex w-full h-1/2 gap-2">
-        <div className="w-2/4 h-2/3 md:h-full bg-[#A9D6E5] rounded-2xl  flex flex-col justify-evenly shadow-lg">
-          <div className="w-[100%] h-[100%] z-50 bg-gradient-to-br from-[#A4C8E1] to-[#5a8cbc] flex flex-col items-center justify-center shadow-lg opacity-[0.8] px-4 py-6 rounded-2xl  ">
-            <h2 className="text-white text-xl font-bold">Start Your Fundraiser</h2>
-            <p className="text-white text-[10px] md:text-[15px]">
-            Launch your fundraiser to rally support and collect funds for your cause!
-            </p>
-          </div>
-        </div>
+        <Link
+          to= "/campaignform"
+          className="w-2/4 h-2/3 md:h-full z-50 bg-[#778457] flex flex-col items-start justify-center shadow-lg opacity-[0.8] px-10 max-md:px-4 py-6 rounded-2xl  "
+        >
+          <h2 className="text-[#e0fce7] text-[20px] md:text-xl font-semibold mb-4">
+            Start Your Fundraiser
+          </h2>
+          <p className="text-[#e0fce7] mb-4 text-[15px] md:text-[13px]">
+            Launch your fundraiser to rally support and collect funds for your
+            cause!
+          </p>
+        </Link>
         <Link
           to="/sell"
           className="w-1/4 h-2/3 cards4-bg md:h-full bg-[#A9D6E5] rounded-2xl flex flex-col justify-evenly shadow-lg"

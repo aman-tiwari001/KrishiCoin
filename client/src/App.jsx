@@ -5,7 +5,9 @@ import { Home } from "./pages/Home";
 import LandingPage from "./pages/LandingPage";
 import BaseName from "./pages/BaseName";
 import SellPage from "./pages/SellPage";
-import Donation from "./pages/Donation";
+import Donation from "./pages/DonationPage";
+import { Toaster } from 'react-hot-toast';
+import CampaignForm from "./components/CampaignForm";
 import AuthPage from "./pages/AuthPage";
 
 function App() {
@@ -19,11 +21,13 @@ function App() {
       {shouldShowNavbar && <Navbar />}
       <main>
         <Routes>
+  
           <Route path="/" element={<LandingPage />} />
           <Route path="/register" element={<AuthPage />} />
           <Route path="/home" element={<Home />} />
           <Route path="/get-basename" element={<BaseName />} />
           <Route path="/sell" element={<SellPage />} />
+          <Route path="/campaignform" element={<CampaignForm />} />
           <Route path="/donate" element={<Donation />} />
         </Routes>
       </main>
@@ -34,6 +38,7 @@ function App() {
 export default function MainApp() {
   return (
     <BrowserRouter>
+      <Toaster/>
       <App />
     </BrowserRouter>
   );

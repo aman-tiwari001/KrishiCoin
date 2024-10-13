@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function LeftCards() {
   return (
     <div className="w-full md:w-[40%] h-[50vh] flex flex-col-reverse gap-2 py-4">
@@ -12,17 +14,19 @@ function LeftCards() {
 
       {/* 2 small cards */}
       <div className="flex w-full h-1/2 gap-2">
-        <div className="w-1/2 h-full bg-[#283618] rounded-2xl px-10 max-md:px-4 py-6 flex flex-col items-start justify-center shadow-lg">
-          <h2 className="text-[#e0fce7] text-[20px] md:text-xl font-semibold mb-4">
-            Make a Donation
-          </h2>
-          <p className="text-[#e0fce7] mb-4 text-[15px] md:text-[13px]">
-            Be the one to make the change in people&apos;s lives
-          </p>
-          <button className="bg-white text-[#24843E] font-bold py-2 px-6 rounded-full shadow transition duration-300 hover:bg-gray-200">
-            Donate Now
-          </button>
-        </div>
+        <>
+          <Link
+            to="/donate"
+            className="w-1/2 h-full bg-[#283618] rounded-2xl px-10 max-md:px-4 py-6 flex flex-col items-start justify-center shadow-lg"
+          >
+            <h2 className="text-[#e0fce7] text-[20px] md:text-xl font-semibold mb-4">
+              Make a Donation
+            </h2>
+            <p className="text-[#e0fce7] mb-4 text-[15px] md:text-[13px]">
+              Be the one to make the change in people&apos;s lives
+            </p>
+          </Link>
+        </>
 
         <div className="w-1/2 h-full rounded-2xl bg-white bg-gradient-to-bl from-[#7C5D25] to-[#C9A53D]  flex flex-col items-center justify-center shadow-lg">
           <div className="w-[96%] h-[96%] rounded-2xl bg-white m-2  p-6 flex flex-col items-center justify-center ">
