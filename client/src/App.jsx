@@ -9,6 +9,7 @@ import Donation from "./pages/DonationPage";
 import { Toaster } from 'react-hot-toast';
 import CampaignForm from "./components/CampaignForm";
 import AuthPage from "./pages/AuthPage";
+import MarketPlace from "./pages/MarketPlace";
 
 function App() {
   const location = useLocation();
@@ -28,6 +29,7 @@ function App() {
           <Route path="/sell" element={<SellPage />} />
           <Route path="/campaignform" element={<CampaignForm />} />
           <Route path="/donate" element={<Donation />} />
+          <Route path="/market" element={<MarketPlace />} />
         </Routes>
       </main>
     </>
