@@ -16,3 +16,18 @@ export const registerUser = async (payload) => {
 		throw error;
 	}
 };
+
+export const checkUser = async (wallet_address) => {
+	try {
+		const response = await axios.get(
+			baseUrl + '/api/users/check-user?wallet_address=' + wallet_address
+		);
+		return response.data;
+	} catch (error) {
+		console.error(
+			'Error checking user:',
+			error.response ? error.response.data : error.message
+		);
+		throw error;
+	}
+};

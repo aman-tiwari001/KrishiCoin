@@ -1,11 +1,30 @@
 import { base } from 'viem/chains';
 import { Address, Avatar, Name } from '@coinbase/onchainkit/identity';
 import { useWalletStore } from '../store/WalletStore';
-import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { checkUser } from '../apis/auth';
+import { useNavigate } from 'react-router-dom';
 
 const BaseName = () => {
+	const navigate = useNavigate();
 	const address =
-		useWalletStore((state) => state.address) || localStorage.getItem('base-wallet-address');
+		useWalletStore((state) => state.address) ||
+		localStorage.getItem('base-wallet-address');
+
+	const handleCheckUser = async () => {
+		try {
+			const res = await checkUser(address);
+			console.log(res);
+			if(res.exist) {
+				navigate('/home');
+			} else {
+				navigate('/register');
+			}
+		} catch (error) {
+			console.error('Error checking user:', error);
+			toast.error('Error checking user');
+		}
+	};
 	return (
 		<div>
 			<div className='flex items-center space-x-2 p-2'>
@@ -21,7 +40,8 @@ const BaseName = () => {
 			</div>
 			<h2 className='text-5xl text-center my-14 text-[#283e2f]'>
 				Your Basename
-			</h2>5
+			</h2>
+			5
 			{address && (
 				<div className='flex gap-2 items-center border-2 w-48 mx-auto border-black rounded-full py-1 px-2'>
 					<Avatar address={address} chain={base} />
@@ -31,7 +51,6 @@ const BaseName = () => {
 					</div>
 				</div>
 			)}
-
 			<p className='w-[50%] max-sm:w-[85%] mx-auto text-left my-10 text-gray-500'>
 				Basename is your human-readable name on the Base blockchain. It is just
 				a representation of your wallet address. If you don&apos;t have basename
@@ -45,9 +64,12 @@ const BaseName = () => {
 					here↗️{' '}
 				</a>
 				<br />
-				<Link to={'/register'}>
-					<button className='btn my-10 btn-primary text-white outline-lime-900 bg-[#283e2f]'>Proceed</button>
-				</Link>
+				<button
+					onClick={handleCheckUser}
+					className='btn my-10 btn-primary text-white outline-lime-900 bg-[#283e2f]'
+				>
+					Proceed
+				</button>
 			</p>
 		</div>
 	);

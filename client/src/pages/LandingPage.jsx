@@ -75,6 +75,7 @@ const LandingPage = () => {
 	const navigate = useNavigate();
 	const setAddress = useWalletStore((state) => state.setAddress);
 	const walletSuccessHandler = (address) => {
+		console.log(`Wallet connected: ${address}`);
 		setAddress(address);
 		localStorage.setItem('base-wallet-address', address);
 		navigate('/get-basename');

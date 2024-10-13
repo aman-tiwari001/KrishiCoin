@@ -8,7 +8,6 @@ exports.connectWallet = async (req, res) => {
   const { wallet_address, name, basename, phone } = req.body;
   try {
     let user = await User.findOne({ wallet_address });
-    console.log(user);
     if (!user) {
       user = new User({ wallet_address, name, basename, phone });
       await user.save();
@@ -20,7 +19,7 @@ exports.connectWallet = async (req, res) => {
     );
     res.json({ user, token });
   } catch (error) {
-    res.status(500).json({ message: error.message, error });
+    res.status(500).json({ message: 'Server error', error });
   }
 };
 
@@ -37,6 +36,23 @@ exports.getUser = async (req, res) => {
       { expiresIn: '1h' }
     );
     res.json({ user, token });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
+  }
+};
+
+// Get user
+// req.user: { wallet_address }
+// res: {exist, user}
+exports.checkUser = async (req, res) => {
+  try {
+    const { wallet_address } = req.query;
+    const user = await User.findOne({ wallet_address });
+    if (user) {
+      return res.json({ exist: true, user });
+    } else {
+      return res.json({ exist: false });
+    }
   } catch (error) {
     res.status(500).json({ message: 'Server error', error });
   }
