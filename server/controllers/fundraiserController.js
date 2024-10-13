@@ -2,13 +2,13 @@ const Fundraiser = require('../models/fundRaiser');
 const User = require('../models/user');
 
 // Start a new fundraiser
-// req.body: { title, desc, target_funds, deadline, images, project_id }
+// req.body: { title, desc, target_funds, deadline, images }
 // res: fundraiser
 exports.startFundraiser = async (req, res) => {
-  const { title, desc, target_funds, deadline, images, project_id } = req.body;
+  const { title, desc, target_funds, deadline, images } = req.body;
 
   try {
-    const fundraiser = new Fundraiser({ title, desc, target_funds, deadline, images, project_id });
+    const fundraiser = new Fundraiser({ title, desc, target_funds, deadline, images });
     await fundraiser.save();
     const user = await User.findById(req.user._id);
     user.my_fundraisers.push(fundraiser._id);
