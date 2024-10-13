@@ -6,7 +6,6 @@ const FundraiserSchema = new mongoose.Schema({
   target_funds: { type: Number, required: true },
   deadline: { type: Date, required: true },
   images: { type: [String], required: true }, // Array of images
-  project_id: { type: Number, required: true },
   donators: [
     {
       user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
