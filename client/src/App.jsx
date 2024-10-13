@@ -6,6 +6,7 @@ import LandingPage from "./pages/LandingPage";
 import BaseName from "./pages/BaseName";
 import SellPage from "./pages/SellPage";
 import Donation from "./pages/Donation";
+import AuthPage from "./pages/AuthPage";
 
 function App() {
   const location = useLocation();
@@ -18,8 +19,9 @@ function App() {
       {shouldShowNavbar && <Navbar />}
       <main>
         <Routes>
-          <Route path="/home" element={<Home />} />
           <Route path="/" element={<LandingPage />} />
+          <Route path="/register" element={<AuthPage />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/get-basename" element={<BaseName />} />
           <Route path="/sell" element={<SellPage />} />
           <Route path="/donate" element={<Donation />} />

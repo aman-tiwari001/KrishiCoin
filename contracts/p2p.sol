@@ -23,9 +23,6 @@ contract P2PMarketplace {
         bool isConfirmed;
     }
 
-    uint256 public listingCounter;
-    uint256 public orderCounter;
-
     mapping(uint256 => Item) public items;
     mapping(uint256 => Order) public orders;
 
@@ -98,7 +95,7 @@ contract P2PMarketplace {
 
         // Create a new order
         orders[_orderId] = Order({
-            orderId: orderCounter,
+            orderId: _orderId,
             listingId: _listingId,
             quantity: _quantity,
             buyer: payable(msg.sender),
