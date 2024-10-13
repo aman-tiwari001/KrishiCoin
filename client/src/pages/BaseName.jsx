@@ -45,7 +45,7 @@ const BaseName = () => {
 					here↗️{' '}
 				</a>
 				<br />
-				<Link to={'/home'}>
+				<Link to={'/register'}>
 					<button className='btn my-10 btn-primary text-white outline-lime-900 bg-[#283e2f]'>Proceed</button>
 				</Link>
 			</p>

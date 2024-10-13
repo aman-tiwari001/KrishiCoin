@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { createListing } from "../apis/listing";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -48,7 +47,7 @@ const SellPage = () => {
         images: listings.images,
       };
 
-      const newListing = await createListing(payload);
+      await createListing(payload);
       reset();
       setImagePreviews([]);
       toast.success("Listing created successfully");

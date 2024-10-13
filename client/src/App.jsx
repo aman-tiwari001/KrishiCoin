@@ -21,7 +21,6 @@ function App() {
       {shouldShowNavbar && <Navbar />}
       <main>
         <Routes>
-  
           <Route path="/" element={<LandingPage />} />
           <Route path="/register" element={<AuthPage />} />
           <Route path="/home" element={<Home />} />

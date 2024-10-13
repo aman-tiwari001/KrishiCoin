@@ -19,7 +19,7 @@ connectDB();
 app.use(express.json());
 
 app.get('/', (_req, res) => {
-  res.send('Welcome to Krishi Coin 🪙🧑‍🌾🌱');
+  res.send('Welcome to KrishiCoin 🪙🧑‍🌾🌱');
 });
 
 app.use('/api/users', userRoutes);

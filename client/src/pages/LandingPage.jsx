@@ -86,7 +86,7 @@ const LandingPage = () => {
 
 	const account = useAccount();
 	useEffect(() => {
-		if (account.isConnected || localStorage.getItem('base-wallet-address')) {
+		if (account.isConnected) {
 			navigate('/home');
 		}
 	}, []);

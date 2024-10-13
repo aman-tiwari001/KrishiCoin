@@ -8,6 +8,7 @@ exports.connectWallet = async (req, res) => {
   const { wallet_address, name, basename, phone } = req.body;
   try {
     let user = await User.findOne({ wallet_address });
+    console.log(user);
     if (!user) {
       user = new User({ wallet_address, name, basename, phone });
       await user.save();
@@ -15,11 +16,11 @@ exports.connectWallet = async (req, res) => {
     const token = jwt.sign(
       { _id: user._id, wallet_address },
       process.env.JWT_SECRET,
-      { expiresIn: '1h' }
+      { expiresIn: '30d' }
     );
     res.json({ user, token });
   } catch (error) {
-    res.status(500).json({ message: 'Server error', error });
+    res.status(500).json({ message: error.message, error });
   }
 };
 
