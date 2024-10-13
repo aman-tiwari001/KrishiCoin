@@ -46,12 +46,12 @@ exports.getUser = async (req, res) => {
 // res: {exist, user}
 exports.checkUser = async (req, res) => {
   try {
-    const { wallet_address } = req.body;
+    const { wallet_address } = req.query;
     const user = await User.findOne({ wallet_address });
     const token = jwt.sign(
       { _id: user._id, wallet_address },
       process.env.JWT_SECRET,
-      { expiresIn: '1h' }
+      { expiresIn: '30d' }
     );
     if (user) {
       return res.json({ exist: true, user, token });

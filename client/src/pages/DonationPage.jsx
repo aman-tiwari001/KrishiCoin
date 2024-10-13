@@ -1,5 +1,4 @@
-// DonationPage.jsx
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CampaignCard from "../components/CampaignCard";
 import { getFundraisers } from "../apis/fundRaiser";
 
@@ -10,7 +9,7 @@ function DonationPage() {
     const fetchCampaigns = async () => {
       try {
         const response = await getFundraisers();
-
+        console.log("response", response);
         setCampaigns(response);
       } catch (error) {
         console.error("Error fetching campaigns:", error);
@@ -33,7 +32,7 @@ function DonationPage() {
     <div className="h-screen">
       <div className="h-[80px]"></div>
       <div className="flex h-screen-minus-80 overflow-y-auto flex-wrap gap-8 justify-center p-8">
-        {!campaigns.length > 0 ? (
+        {campaigns.length > 0 ? (
           campaigns.map((campaign) => (
             <CampaignCard
               key={campaign.id}
@@ -41,7 +40,7 @@ function DonationPage() {
               target={campaign.target}
               amtfunded={campaign.amtFunded}
               deadline={campaign.deadline}
-              author="Bala Sharma"
+              author={campaign.owner.name}
               image={campaign.image}
             />
           ))

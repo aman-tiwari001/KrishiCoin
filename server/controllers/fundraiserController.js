@@ -13,7 +13,8 @@ exports.startFundraiser = async (req, res) => {
       desc,
       target_funds,
       deadline,
-      images
+      images,
+      owner: req.user._id
     });
     await fundraiser.save();
     const user = await User.findById(req.user._id);
@@ -67,11 +68,13 @@ exports.getFundraiser = async (req, res) => {
 };
 
 exports.getFundraisers = async (req, res) => {
+ 
   try {
     const fundraisers = await Fundraiser.find()
-      .populate('donators.user', 'name wallet_address')
-      .exec();
-
+    .populate('donators.user', 'name wallet_address')
+    .populate('owner', 'name wallet_address')
+    .exec();
+console.log("fundraisers", fundraisers);
     const formattedFundraisers = fundraisers.map(fundraiser => {
       const totalFunded = fundraiser.donators.reduce((total, donator) => {
         return total + donator.amount_donated;
@@ -83,7 +86,8 @@ exports.getFundraisers = async (req, res) => {
         target: fundraiser.target_funds,
         deadline: fundraiser.deadline,
         amtFunded: totalFunded,
-        image: fundraiser.images[0]
+        image: fundraiser.images[0],
+        owner: fundraiser.owner
       };
     });
 
