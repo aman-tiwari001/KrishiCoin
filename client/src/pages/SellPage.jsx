@@ -136,14 +136,16 @@ const SellPage = () => {
           <div className="flex gap-5">
             <div>
               <label htmlFor="quantity" className="block text-sm font-medium">
-                Quantity (in multiples of 50kg)
+                Quantity (in quintals)
               </label>
               <input
                 type="number"
                 {...register("quantity", {
                   required: "Quantity is required",
-                  min: 50,
-                  step: 50,
+                  min: {
+                    value: 0.5,
+                    message: "Minimum quantity is 0.5 quintals",
+                  },
                 })}
                 id="quantity"
                 className="mt-1 block w-full px-3 bg-white text-black py-2 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -160,12 +162,16 @@ const SellPage = () => {
                 htmlFor="pricePerUnit"
                 className="block text-sm font-medium"
               >
-                Price Per 50kg
+                Price (per quintal)
               </label>
               <input
                 type="number"
                 {...register("pricePerUnit", {
                   required: "Price per unit is required",
+                  min: {
+                    value: 0.01,
+                    message: "Price must be greater than 0",
+                  },
                 })}
                 id="pricePerUnit"
                 className="mt-1 block w-full px-3 bg-white text-black py-2 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
