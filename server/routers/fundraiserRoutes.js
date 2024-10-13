@@ -12,4 +12,6 @@ router.post('/donate', verifyToken, fundraiserController.donateToFundraiser);
 // get fundraiser
 router.get('/:id', verifyToken, fundraiserController.getFundraiser);
 
+// get all fundraisers
+router.get('/', verifyToken, fundraiserController.getFundraisers);
 module.exports = router;

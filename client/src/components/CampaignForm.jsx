@@ -32,7 +32,7 @@ const CampaignForm = () => {
         });
       })
     ).then((base64Images) => {
-      setListings((prev) => ({
+      setFundraisers((prev) => ({
         ...prev,
         images: base64Images,
       }));

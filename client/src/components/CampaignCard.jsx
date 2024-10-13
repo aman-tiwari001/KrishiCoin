@@ -1,36 +1,40 @@
 import React from 'react';
 import { MdOutlineTimer } from "react-icons/md";
+import { differenceInDays } from 'date-fns'; // Import date-fns
 
+function CampaignCard({ title, target, amtfunded, author, image, deadline }) {
 
-function CampaignCard({ title, totaldays, target, amtfunded, author, image, startDate }) { 
-  // Calculate days left
-  const currentDate = new Date(); // Get current date
-  const start = new Date(startDate); // Convert start date to Date object
-  const daysPassed = Math.floor((currentDate - start) / (1000 * 60 * 60 * 24)); // Days between start and today
-  const daysLeft = Math.max(totaldays - daysPassed, 0); // Ensure days left is not negative
-
-  const percfunded = ((target - amtfunded)/target)*100
+  console.log(amtfunded, target);
+  const percfunded = (amtfunded/target) * 100;
+  console.log(percfunded);
+  const daysLeft = differenceInDays(new Date(deadline), new Date());
 
   return (
-    <div className="card h-[300px] bg-[#283e2f] text-[#e0fce7] w-96 shadow-xl">
-      <figure className="h-[60%]">
-        <img src={image} alt={title} />
+    <div className="card h-[350px] bg-[#283e2f] text-[#e0fce7] w-96 shadow-xl rounded-lg overflow-hidden">
+      <figure className="h-[60%] overflow-hidden">
+        <img src={image} alt={title} className="object-cover w-full h-full bg-lime-700" />
       </figure>
-      <div className="card-body p-2 gap-0 flex flex-col h-[40%]">
-        <h2 className="text-xl">{title}</h2>
-        <h5 className="text-xs">By {author}</h5>
-        <div className="flex justify-evenly items-center">
-          <h3 className="text-sm flex ">
-           <MdOutlineTimer />
-            <span className='mt-[-3px] ml-1 '>{daysLeft}Days Left</span>
-        
-          </h3>
-          <h3 className="text-sm ">
-            {percfunded}% Funded
-          </h3>
-          <button className="btn border-0 bg-[#778457] text-[#e0fce7] ">Contribute Now</button>
+      
+      <div className="card-body p-4 flex flex-col justify-between h-[40%]">
+        <div>
+          <h2 className="text-lg font-semibold">{title}</h2>
+          <h5 className="text-xs text-gray-300">By {author}</h5>
         </div>
 
+        <div className="flex justify-between items-center mt-2">
+          <h3 className="text-sm flex items-center gap-1">
+            <MdOutlineTimer size={18} />
+            <span>{daysLeft > 0 ? `${daysLeft} Days Left` : 'Expired'}</span>
+          </h3>
+          
+          <h3 className="text-sm">
+            {percfunded.toFixed(0)}% Funded
+          </h3>
+          
+          <button className="btn bg-[#778457] border-0 text-white text-sm py-1 px-3 rounded-md">
+            Contribute Now
+          </button>
+        </div>
       </div>
     </div>
   );
