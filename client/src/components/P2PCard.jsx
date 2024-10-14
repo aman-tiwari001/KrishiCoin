@@ -22,7 +22,7 @@ function P2PCard({
         />
       </figure>
 
-      <div className="card-body p-4 flex flex-col justify-between h-[40%]">
+      <div className="card-body p-2 flex flex-col justify-between h-[40%]">
         <div>
           <h2 className="text-lg font-semibold">{title}</h2>
           <div className="flex justify-between">
@@ -34,9 +34,9 @@ function P2PCard({
           </div>
         </div>
 
-        <div className="flex justify-between items-center mt-2">
-            <QuantityCircle quantity={quantity} quantityLeft={quantityLeft} />
-            <span className="ml-[-20px]">Left</span>
+        <div className="flex justify-between items-center mt-2 pb-2">
+          <QuantityCircle quantity={quantity} quantityLeft={quantityLeft} />
+          <span className="ml-[-20px]">Left</span>
 
           <h3 className="text-sm">₹{price} /Quintal</h3>
 
