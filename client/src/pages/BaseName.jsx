@@ -45,8 +45,18 @@ const BaseName = () => {
 			</h2>
 
 			{address && (
-				<div className='flex gap-2 items-center border-2 w-48 mx-auto border-black rounded-full px-2'>
-					<Avatar address={address} chain={base} />
+				<div className='flex gap-2 items-center border-2 w-48 mx-auto border-black rounded-full min-h-12 px-2'>
+					<Avatar
+						loadingComponent={
+							<img
+								src='/loader.png'
+								width={48}
+								className='animate-spin mx-auto text-center'
+							/>
+						}
+						address={address}
+						chain={base}
+					/>
 					<div>
 						<Name address={address} chain={base} />
 						<Address address={address} chain={base} />
@@ -55,8 +65,8 @@ const BaseName = () => {
 			)}
 			<p className='w-[50%] max-sm:w-[85%] mx-auto text-left my-10 text-gray-500'>
 				Basename is your human-readable name on the Base blockchain. It is just
-				a representation of your wallet address. It is an effective way to
-				get people onchain. If you don&apos;t have basename then get yours{' '}
+				a representation of your wallet address. It is an effective way to get
+				people onchain. If you don&apos;t have basename then get yours{' '}
 				<a
 					className='text-blue-600 hover:underline'
 					href='https://www.base.org/names'

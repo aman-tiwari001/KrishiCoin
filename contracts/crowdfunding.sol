@@ -14,7 +14,7 @@ contract Crowdfunding {
     }
 
     // State variables
-    Project[] public projects;
+    mapping(uint256 => Project) projects;
 
     // Events
     event ProjectCreated(
@@ -32,9 +32,10 @@ contract Crowdfunding {
     function createProject(
         string memory _name,
         uint256 _targetFunds,
-        uint256 _deadline
+        uint256 _deadline,
+        uint256 _projectId
     ) public {
-        Project storage newProject = projects.push();
+        Project storage newProject = projects[_projectId];
         newProject.name = _name;
         newProject.targetFunds = _targetFunds;
         newProject.deadline = _deadline;
@@ -43,7 +44,7 @@ contract Crowdfunding {
         newProject.fundsWithdrawn = false;
 
         emit ProjectCreated(
-            projects.length - 1,
+            _projectId,
             _name,
             _targetFunds,
             _deadline,
@@ -66,7 +67,6 @@ contract Crowdfunding {
 
     // Fund a specific project
     function fund(uint256 projectId) public payable {
-        require(projectId < projects.length, "Project does not exist");
         Project storage project = projects[projectId];
         require(isFundEnabled(project), "Funding is disabled");
 
@@ -78,7 +78,6 @@ contract Crowdfunding {
 
     // Owner withdraws funds from a specific project
     function withdrawOwner(uint256 projectId) public {
-        require(projectId < projects.length, "Project does not exist");
         Project storage project = projects[projectId];
         require(msg.sender == project.owner, "Unauthorized");
         require(isFundSuccess(project), "Funds can't be withdrawn now");
@@ -94,7 +93,6 @@ contract Crowdfunding {
 
     // Funder withdraws funds from a specific project
     function withdrawFunder(uint256 projectId) public {
-        require(projectId < projects.length, "Project does not exist");
         Project storage project = projects[projectId];
         require(
             !isFundEnabled(project) && !isFundSuccess(project),
@@ -126,7 +124,6 @@ contract Crowdfunding {
             bool fundsWithdrawn
         )
     {
-        require(projectId < projects.length, "Project does not exist");
         Project storage project = projects[projectId];
         return (
             project.name,

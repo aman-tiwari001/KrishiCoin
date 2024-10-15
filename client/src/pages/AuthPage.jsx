@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const AuthPage = () => {
 	const { data: name, isLoading } = useName({
-		address: localStorage,
+		address: localStorage.getItem('base-wallet-address'),
 		chain: { base },
 	});
 

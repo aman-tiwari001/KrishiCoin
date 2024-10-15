@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { useWalletStore } from '../store/WalletStore';
 import { useAccount } from 'wagmi';
+import toast from 'react-hot-toast';
 
 const features = [
 	{
@@ -82,7 +83,7 @@ const LandingPage = () => {
 	};
 	const walletErrorHandler = (error) => {
 		console.error(`Wallet connection error: ${error.message}`);
-		alert('Wallet connection error. Please try again.');
+		toast.error('Wallet connection error. Please try again.');
 	};
 
 	const account = useAccount();
