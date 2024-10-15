@@ -5,7 +5,7 @@ const User = require('../models/user');
 // req.body: { title, desc, target_funds, deadline, images }
 // res: fundraiser
 exports.startFundraiser = async (req, res) => {
-  const { title, desc, target_funds, deadline, images } = req.body;
+  const { title, desc, target_funds, deadline, images, projectId } = req.body;
 
   try {
     const fundraiser = new Fundraiser({
@@ -14,7 +14,8 @@ exports.startFundraiser = async (req, res) => {
       target_funds,
       deadline,
       images,
-      owner: req.user._id
+      owner: req.user._id,
+      projectId
     });
     await fundraiser.save();
     const user = await User.findById(req.user._id);
@@ -68,13 +69,12 @@ exports.getFundraiser = async (req, res) => {
 };
 
 exports.getFundraisers = async (req, res) => {
- 
   try {
     const fundraisers = await Fundraiser.find()
-    .populate('donators.user', 'name wallet_address')
-    .populate('owner', 'name wallet_address')
-    .exec();
-console.log("fundraisers", fundraisers);
+      .populate('donators.user', 'name wallet_address')
+      .populate('owner', 'name wallet_address')
+      .exec();
+    console.log('fundraisers', fundraisers);
     const formattedFundraisers = fundraisers.map(fundraiser => {
       const totalFunded = fundraiser.donators.reduce((total, donator) => {
         return total + donator.amount_donated;
