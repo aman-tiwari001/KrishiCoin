@@ -10,6 +10,8 @@ import { Toaster } from 'react-hot-toast';
 import CampaignForm from "./components/CampaignForm";
 import AuthPage from "./pages/AuthPage";
 import MarketPlace from "./pages/MarketPlace";
+// import Test from "./pages/test";
+import Details from "./pages/Details";
 
 function App() {
   const location = useLocation();
@@ -27,6 +29,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/get-basename" element={<BaseName />} />
           <Route path="/sell" element={<SellPage />} />
+          <Route path="/details" element={<Details />} />
           <Route path="/campaignform" element={<CampaignForm />} />
           <Route path="/donate" element={<Donation />} />
           <Route path="/market" element={<MarketPlace />} />

@@ -23,7 +23,7 @@ function RightCards() {
       {/* 3 small cards */}
       <div className="flex w-full h-1/2 gap-2">
         <Link
-          to= "/campaignform"
+          to="/campaignform"
           className="w-2/4 h-2/3 md:h-full z-50 bg-[#778457] flex flex-col items-start justify-center shadow-lg opacity-[0.8] px-10 max-md:px-4 py-6 rounded-2xl  "
         >
           <h2 className="text-[#e0fce7] text-[20px] md:text-xl font-semibold mb-4">
@@ -42,13 +42,16 @@ function RightCards() {
             <h2 className="text-white text-xl font-bold">Sell Crops</h2>
           </div>
         </Link>
-        <div className="w-1/4 h-2/3 md:h-full  rounded-2xl cards3-bg flex flex-col items-center justify-center shadow-lg">
+        <Link
+          to="/market"
+          className="w-1/4 h-2/3 md:h-full  rounded-2xl cards3-bg flex flex-col items-center justify-center shadow-lg"
+        >
           <div className="w-[100%] h-[100%] z-50 bg-black flex flex-col items-center justify-center shadow-lg opacity-[0.7] px-4 py-6 rounded-2xl  ">
             <h2 className="text-white top-4 max-md:text-sm text-md font-bold">
               P2P Marketplace
             </h2>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );

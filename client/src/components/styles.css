@@ -1,0 +1,27 @@
+/* Styles for Swiper */
+.swiper {
+  position: relative;
+  width: 500px; /* Adjust width for landscape */
+  height: 300px; /* Lower height to make cards landscape */
+}
+
+/* Custom Swiper Slide */
+.swiper-slide-custom {
+  width: 80%; /* Make slides wider */
+  height: 70%; /* Shorter height for landscape look */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background-color: #4a90e2; /* Optional background color */
+  overflow: hidden;
+}
+
+/* Swiper container */
+.mySwiper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: aquamarine; */
+  padding: 5px;
+}
