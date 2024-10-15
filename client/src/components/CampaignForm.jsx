@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { startFundraiser } from '../apis/fundRaiser';
+import { getFundraisers, startFundraiser } from '../apis/fundRaiser';
 import { cwfContract } from '../utils/contract';
 import CustomLoader from './CustomLoader';
+import CurrencyConvertor from './CurrencyConvertor';
+import { getCurrencyExchangeRate } from '../apis/exchange-rate';
 
 const CampaignForm = () => {
 	const {
@@ -17,6 +19,7 @@ const CampaignForm = () => {
 	const [imagePreviews, setImagePreviews] = useState([]);
 	const [fundraisers, setFundraisers] = useState([]);
 	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [amount, setAmount] = useState(0);
 	const navigate = useNavigate();
 
 	// Handle image input and generate previews
@@ -43,13 +46,24 @@ const CampaignForm = () => {
 		});
 	};
 
+	const [exchangeRate, setExchangeRate] = useState(0);
+
+	const fetchExRate = async () => {
+		try {
+			const res = await getCurrencyExchangeRate('USD');
+			setExchangeRate(parseFloat(res.data.rates['ETH']));
+		} catch (error) {
+			console.log('Error fetching exchange rate:', error);
+		}
+	};
+
 	const handleCreateFundraiserOnChain = async (data) => {
-		await cwfContract.getProject(123);
+		await fetchExRate();
 		const tx = await cwfContract.createProject(
 			data._name,
-			data._targetFunds,
+			data._targetFunds * exchangeRate * 10 ** 18, // in wei
 			data._deadline,
-			1331
+			data._projectId
 		);
 		await tx.wait();
 	};
@@ -57,11 +71,14 @@ const CampaignForm = () => {
 	const onSubmit = async (data) => {
 		try {
 			setIsSubmitting(true);
+			const res = (await getFundraisers());
+			const projectId = res.length + 1;
 			if (cwfContract) {
 				await handleCreateFundraiserOnChain({
 					_name: data.title,
 					_targetFunds: data.targetAmount,
 					_deadline: new Date(data.deadline).getTime(),
+					_projectId: projectId,
 				});
 			}
 			const payload = {
@@ -70,6 +87,7 @@ const CampaignForm = () => {
 				target_funds: data.targetAmount,
 				deadline: data.deadline,
 				images: fundraisers.images,
+				projectId,
 			};
 			await startFundraiser(payload);
 			reset();
@@ -179,7 +197,9 @@ const CampaignForm = () => {
 								type='date'
 								name='deadline'
 								id='deadline'
-								{...register('deadline', { required: 'Deadline is required' })}
+								{...register('deadline', {
+									required: 'Deadline is required',
+								})}
 								className='mt-1 w-full px-3 py-2 bg-white text-black border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
 								onClick={(e) => e.target.showPicker()}
 							/>
@@ -204,6 +224,13 @@ const CampaignForm = () => {
 								placeholder='Set a target amount'
 								{...register('targetAmount', {
 									required: 'Target Amount is required',
+									onChange: (e) => {
+										setAmount(e.target.value);
+									},
+									min:{
+										value: 100,
+										message: 'Minimum target amount is 100 USD'
+									}
 								})}
 								className='mt-1 w-full px-3 py-2 bg-white text-black border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
 							/>
@@ -212,6 +239,7 @@ const CampaignForm = () => {
 									{errors.targetAmount.message}
 								</p>
 							)}
+							<CurrencyConvertor from='USD' to='ETH' value={amount} />
 						</div>
 					</div>
 					<button

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { createListing } from "../apis/listing";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import CurrencyConvertor from "../components/CurrencyConvertor";
 const SellPage = () => {
   const {
     register,
@@ -12,6 +13,7 @@ const SellPage = () => {
   } = useForm();
   const [imagePreviews, setImagePreviews] = useState([]);
   const [listings, setListings] = useState([]);
+  const [price, setPrice] = useState(0);
   const navigate = useNavigate();
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
@@ -162,7 +164,7 @@ const SellPage = () => {
                 htmlFor="pricePerUnit"
                 className="block text-sm font-medium"
               >
-                Price (per quintal)
+                Price per quintal (in USD)
               </label>
               <input
                 type="number"
@@ -172,6 +174,7 @@ const SellPage = () => {
                     value: 0.01,
                     message: "Price must be greater than 0",
                   },
+                  onChange: (e) => setPrice(e.target.value),
                 })}
                 id="pricePerUnit"
                 className="mt-1 block w-full px-3 bg-white text-black py-2 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -181,6 +184,7 @@ const SellPage = () => {
                   {errors.pricePerUnit.message}
                 </p>
               )}
+              <CurrencyConvertor from={"USD"} to={"ETH"} value={price} />
             </div>
           </div>
 
