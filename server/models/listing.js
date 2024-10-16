@@ -10,9 +10,7 @@ const ListingSchema = new mongoose.Schema({
   owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   orders: [
     {
-      user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-      quantity: { type: Number, required: true },
-      delivery_location: { type: String, required: true }
+      order: { type: mongoose.Schema.Types.ObjectId, ref: 'Order' }
     }
   ],
   sold_stock: { type: Number, default: 0 }

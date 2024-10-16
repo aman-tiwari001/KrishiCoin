@@ -46,7 +46,7 @@ function MarketPlace() {
                 city={product.city}
                 state={product.state}
                 user={product.owner.name}
-                quantity={product.quantity}
+                quantity={product.total_stock}
                 price={product.price}
                 quantityLeft={((product.total_stock-product.sold_stock)/product.total_stock)*100} 
                 // location={product.location}

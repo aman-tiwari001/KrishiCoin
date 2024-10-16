@@ -12,11 +12,7 @@ const UserSchema = new mongoose.Schema({
   my_fundraisers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Fundraiser' }],
   my_listings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Listing' }],
   my_order: [{
-    listing: { type: mongoose.Schema.Types.ObjectId, ref: 'Listing' },
-    amount: { type: Number, required: true },
-    quantity: { type: Number, required: true },
-    delivery_location: { type: String, required: true },
-    status: { type: Boolean, required: true, default: false }  
+    order : { type: mongoose.Schema.Types.ObjectId, ref: 'Order' },
   }]
 });
 

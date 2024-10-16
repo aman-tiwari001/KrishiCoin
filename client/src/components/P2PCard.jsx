@@ -28,7 +28,7 @@ function P2PCard({ id, title, image, price, user, quantityLeft, quantity }) {
           </div>
 
           <div className="flex items-center">
-            <div
+            {/* <div
               className="radial-progress text-[#43d854] w-[50px] h-[50px] font-bold"
               style={{
                 "--value": `${Math.floor(quantityLeft)}`,
@@ -38,7 +38,8 @@ function P2PCard({ id, title, image, price, user, quantityLeft, quantity }) {
               role="progressbar"
             >
               {quantityLeft.toFixed(0)}
-            </div>
+            </div> */}
+            <QuantityCircle quantity={quantity} quantityLeft={quantityLeft} />
             <span className="ml-2">Left</span>
           </div>
         </div>
@@ -58,6 +59,7 @@ function P2PCard({ id, title, image, price, user, quantityLeft, quantity }) {
 }
 
 function QuantityCircle({ quantity, quantityLeft }) {
+  console.log(quantity, quantityLeft);
   const radius = 24;
   const circumference = 2 * Math.PI * radius;
   const percentageLeft = (quantityLeft / quantity) * 100;
@@ -88,7 +90,7 @@ function QuantityCircle({ quantity, quantityLeft }) {
       </svg>
 
       <div className="absolute inset-0 flex items-center justify-center text-sm font-semibold">
-        {quantityLeft}
+      {quantityLeft.toFixed(0)}
       </div>
     </div>
   );
