@@ -8,4 +8,7 @@ router.post('/create', verifyToken, listingController.createListing);
 
 // get a listing
 router.get('/:id', verifyToken, listingController.getListing);
+
+// get all listings
+router.get('/', verifyToken, listingController.getListings);
 module.exports = router;

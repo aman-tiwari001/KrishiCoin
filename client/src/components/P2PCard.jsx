@@ -1,15 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function P2PCard({
-  title,
-  image,
-  city,
-  state,
-  price,
-  user,
-  quantityLeft,
-  quantity,
-}) {
+function P2PCard({ id, title, image, price, user, quantityLeft, quantity }) {
   const percentageLeft = (quantityLeft / quantity) * 100;
 
   return (
@@ -23,26 +15,42 @@ function P2PCard({
       </figure>
 
       <div className="card-body p-2 flex flex-col justify-between h-[40%]">
-        <div>
-          <h2 className="text-lg font-semibold">{title}</h2>
-          <div className="flex justify-between">
-            <h5 className="text-xs text-gray-300"> By {user}</h5>
-            <h5 className="text-sm text-gray-300">
+        <div className="flex items-center justify-between px-2">
+          <div className="flex flex-col">
+            <h2 className="text-xl font-semibold">{title}</h2>
+            <div className="flex justify-between">
+              <h5 className="text-xs text-gray-300"> By {user}</h5>
+              {/* <h5 className="text-sm text-gray-300">
               {" "}
               {city}, {state}
-            </h5>
+            </h5> */}
+            </div>
+          </div>
+
+          <div className="flex items-center">
+            <div
+              className="radial-progress text-[#43d854] w-[50px] h-[50px] font-bold"
+              style={{
+                "--value": `${Math.floor(quantityLeft)}`,
+                "--size": "12rem",
+                "--thickness": "4px",
+              }}
+              role="progressbar"
+            >
+              {quantityLeft.toFixed(0)}
+            </div>
+            <span className="ml-2">Left</span>
           </div>
         </div>
 
         <div className="flex justify-between items-center mt-2 pb-2">
-          <QuantityCircle quantity={quantity} quantityLeft={quantityLeft} />
-          <span className="ml-[-20px]">Left</span>
+          <h3 className="text-md font-bold ml-2">$ {price} / Quintal</h3>
 
-          <h3 className="text-sm">₹{price} /Quintal</h3>
-
-          <button className="btn bg-[#778457] border-0 text-white text-sm py-1 px-3 rounded-md">
-            Explore Offer
-          </button>
+          <Link to={`/listing/${id}`}>
+            <button className="btn bg-[#778457] border-0 text-white text-sm py-1 px-3 rounded-md">
+              Explore Offer
+            </button>
+          </Link>
         </div>
       </div>
     </div>

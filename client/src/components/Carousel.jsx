@@ -11,6 +11,7 @@ import "swiper/css/navigation";
 import { Autoplay, EffectCards, Pagination } from "swiper/modules";
 
 export default function Carousel({ images }) {
+  console.log(images);
   return (
     <div>
       <Swiper
@@ -30,11 +31,16 @@ export default function Carousel({ images }) {
         className="mySwiper"
       >
         {images.map((image, index) => (
-          <SwiperSlide key={index} className="swiper-slide-custom">
+          <SwiperSlide key={index} className="swiper-slide-custom w-[90%] md:w-[400px] h-[350px] ">
             <img
               src={image}
               alt={`Slide ${index + 1}`}
-              style={{ height: "100%", width: "100%", objectFit: "cover", borderRadius: "12px" }}
+              style={{
+                height: "100%",
+                width: "100%",
+                objectFit: "cover",
+                borderRadius: "12px",
+              }}
             />
           </SwiperSlide>
         ))}

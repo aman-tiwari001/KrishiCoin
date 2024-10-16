@@ -10,3 +10,23 @@ export const createListing = async (payload) => {
   }
 };
 
+
+export const getListings = async () => {
+  try {
+    const response = await axiosInstance.get("/api/listings");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching listings:", error.response ? error.response.data : error.message);
+    throw error;
+  }
+}
+
+export const getListing = async (id) => {
+  try {
+    const response = await axiosInstance.get(`/api/listings/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching listing:", error.response ? error.response.data : error.message);
+    throw error;
+  }
+}

@@ -10,7 +10,6 @@ function DonationPage() {
 		const fetchCampaigns = async () => {
 			try {
 				const response = await getFundraisers();
-				console.log('response', response);
 				setCampaigns(response);
 			} catch (error) {
 				console.error('Error fetching campaigns:', error);
