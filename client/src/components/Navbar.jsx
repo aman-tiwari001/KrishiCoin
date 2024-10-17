@@ -1,13 +1,17 @@
-import { Link } from "react-router-dom";
-import WalletComponent from "./WalletComponent";
+import { Link } from 'react-router-dom';
+import WalletComponent from './WalletComponent';
 
 const Navbar = () => {
 	return (
 		<div className='bg-[url(/grass.jpg)] bg-cover w-full h-[80px] z-20 fixed top-0 flex items-center justify-between py-2 px-6 shadow-md'>
-			<div className='flex items-center space-x-2 '>
-				<img src='/krishi-coin-logo.png' alt='Logo' className='h-12' />
-				<span className='text-green-900 text-[32px] font-bold'>KrishiCoin</span>
-			</div>
+			<Link to={'/'}>
+				<div className='flex items-center space-x-2 '>
+					<img src='/krishi-coin-logo.png' alt='Logo' className='h-12' />
+					<span className='text-green-900 text-[32px] font-bold'>
+						KrishiCoin
+					</span>
+				</div>
+			</Link>
 			<div className='flex items-center space-x-6 border-theme border-[3px] rounded-2xl text-gray-600'>
 				<WalletComponent />
 				{/* <button
@@ -19,9 +23,9 @@ const Navbar = () => {
 				>
 					Logout
 				</button> */}
-      </div>
-    </div>
-  );
+			</div>
+		</div>
+	);
 };
 
 export default Navbar;

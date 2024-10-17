@@ -5,10 +5,6 @@ import { TokenImage } from '@coinbase/onchainkit/token';
 
 function Banner() {
 	const [usd, setUSD] = useState('0.00');
-
-	const ethBal = EthBalance({
-		address: localStorage.getItem('base-wallet-address'),
-	});
 	useEffect(() => {
 		getCurrencyExchangeRate('ETH')
 			.then((data) => setUSD(data.data.rates.USD))
