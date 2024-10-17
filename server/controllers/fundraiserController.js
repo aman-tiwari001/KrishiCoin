@@ -74,7 +74,6 @@ exports.getFundraisers = async (req, res) => {
       .populate('donators.user', 'name wallet_address')
       .populate('owner', 'name wallet_address')
       .exec();
-    console.log('fundraisers', fundraisers);
     const formattedFundraisers = fundraisers.map(fundraiser => {
       const totalFunded = fundraiser.donators.reduce((total, donator) => {
         return total + donator.amount_donated;

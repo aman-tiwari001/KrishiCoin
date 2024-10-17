@@ -9,7 +9,6 @@ function Banner() {
 	const ethBal = EthBalance({
 		address: localStorage.getItem('base-wallet-address'),
 	});
-	console.log(ethBal);
 	useEffect(() => {
 		getCurrencyExchangeRate('ETH')
 			.then((data) => setUSD(data.data.rates.USD))

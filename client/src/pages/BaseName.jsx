@@ -14,7 +14,6 @@ const BaseName = () => {
 	const handleCheckUser = async () => {
 		try {
 			const res = await checkUser(address);
-			console.log(res);
 			if (res.exist) {
 				navigate('/home');
 			} else {

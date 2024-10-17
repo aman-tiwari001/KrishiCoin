@@ -1,4 +1,5 @@
-import WalletComponent from './WalletComponent';
+import { Link } from "react-router-dom";
+import WalletComponent from "./WalletComponent";
 
 const Navbar = () => {
 	return (
@@ -18,9 +19,9 @@ const Navbar = () => {
 				>
 					Logout
 				</button> */}
-			</div>
-		</div>
-	);
+      </div>
+    </div>
+  );
 };
 
 export default Navbar;
