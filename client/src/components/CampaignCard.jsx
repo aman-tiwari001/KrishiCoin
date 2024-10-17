@@ -8,6 +8,7 @@ function CampaignCard({ title, target, amtfunded, author, image, deadline }) {
   const percfunded = (amtfunded/target) * 100;
   console.log(percfunded);
   const daysLeft = differenceInDays(new Date(deadline), new Date());
+  const truncatedTitle = title.length > 20 ? `${title.slice(0, 20)}...` : title;
 
   return (
     <div className="card h-[350px] bg-[#283e2f] text-[#e0fce7] w-96 shadow-xl rounded-lg overflow-hidden">
@@ -17,7 +18,7 @@ function CampaignCard({ title, target, amtfunded, author, image, deadline }) {
       
       <div className="card-body p-4 flex flex-col justify-between h-[40%]">
         <div>
-          <h2 className="text-lg font-semibold">{title}</h2>
+          <h2 className="text-lg font-semibold">{truncatedTitle}</h2>
           <h5 className="text-xs text-gray-300">By {author}</h5>
         </div>
 
