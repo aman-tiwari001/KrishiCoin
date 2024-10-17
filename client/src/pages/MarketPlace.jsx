@@ -10,7 +10,6 @@ function MarketPlace() {
     const fetchProducts = async () => {
       try {
         const response = await getListings();
-        console.log("response", response);
         setProducts(response);
       } catch (error) {
         console.error("Error fetching campaigns:", error);

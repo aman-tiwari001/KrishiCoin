@@ -13,7 +13,7 @@ const CurrencyConvertor = ({ from, to, value }) => {
 			const res = await getCurrencyExchangeRate(from);
 			setExchangeRate(parseFloat(res.data.rates[to]));
 		} catch (error) {
-			console.log('Error fetching exchange rate:', error);
+			console.error('Error fetching exchange rate:', error);
 		} finally {
 			setFetching(false);
 		}

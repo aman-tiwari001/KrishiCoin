@@ -11,7 +11,6 @@ import "swiper/css/navigation";
 import { Autoplay, EffectCards, Pagination } from "swiper/modules";
 
 export default function Carousel({ images }) {
-  console.log(images);
   return (
     <div>
       <Swiper

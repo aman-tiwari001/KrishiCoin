@@ -65,7 +65,6 @@ const ListingDetails = () => {
 
     try {
       const response = await createOrder(orderData);
-      console.log("Order placed successfully:", response);
       toast.success("Order placed successfully");
       navigate("/market");
     } catch (error) {

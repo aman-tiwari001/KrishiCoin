@@ -59,7 +59,6 @@ function P2PCard({ id, title, image, price, user, quantityLeft, quantity }) {
 }
 
 function QuantityCircle({ quantity, quantityLeft }) {
-  console.log(quantity, quantityLeft);
   const radius = 24;
   const circumference = 2 * Math.PI * radius;
   const percentageLeft = (quantityLeft / quantity) * 100;

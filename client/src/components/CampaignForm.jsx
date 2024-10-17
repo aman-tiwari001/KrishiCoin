@@ -53,7 +53,7 @@ const CampaignForm = () => {
 			const res = await getCurrencyExchangeRate('USD');
 			setExchangeRate(parseFloat(res.data.rates['ETH']));
 		} catch (error) {
-			console.log('Error fetching exchange rate:', error);
+			console.error('Error fetching exchange rate:', error);
 		}
 	};
 
