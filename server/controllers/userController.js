@@ -33,16 +33,23 @@ exports.getUser = async (req, res) => {
     const user = await User.findById(id)
       .populate({
         path: 'my_order',
-        populate: [{
-          path: 'listing',
-          select: 'images title desc location',
-          model: 'Listing'
-        },
-        {
-          path: 'buyer',
-          select: 'name ',
-          model: 'User'
-        }],
+        populate: [
+          {
+            path: 'listing',
+            select: 'images title desc location',
+            model: 'Listing'
+          },
+          {
+            path: 'buyer',
+            select: 'name ',
+            model: 'User'
+          },
+          {
+            path: 'seller',
+            select: 'name',
+            model: 'User'
+          }
+        ]
       })
       .populate('my_listings')
       .populate('my_donations')

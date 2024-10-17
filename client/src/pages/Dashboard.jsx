@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { getUser } from "../apis/auth";
 import CustomLoader from "../components/CustomLoader";
 import Listings from "../components/dashboard/MyListings";
+import Orders from "../components/dashboard/MyOrders";
 
 function DashBoard() {
   const [activeTab, setActiveTab] = useState("My Donations");
@@ -34,8 +35,6 @@ function DashBoard() {
       setMyListings(response.my_listings);
       setMyOrders(response.my_order);
       setMyFundraisers(response.my_fundraisers);
-
-
     } catch (error) {
       console.error("Error fetching user:", error);
     } finally {
@@ -46,8 +45,6 @@ function DashBoard() {
   useEffect(() => {
     fetchUser();
   }, []);
-
-  
   if (loading) {
     return (
       <div className="absolute inset-0 flex items-center justify-center text-black">
@@ -143,6 +140,29 @@ function DashBoard() {
                 ) : (
                   <p className="text-white w-full h-[200px] bg-green-700 rounded-md mx-auto flex justify-center items-center text-[19px]">
                     No listings found
+                  </p>
+                )}
+              </div>
+            )}
+
+            {activeTab === "My Orders" && (
+              <div className="flex flex-col gap-2">
+                {myOrders.length > 0 ? (
+                  myOrders.map((order, index) => (
+                    <Link to={`/listing/${order.listing._id}`} key={index}>
+                      <Orders
+                        src={order.listing.images[0]}
+                        title={order.listing.title}
+                        desc={order.listing.desc}
+                        seller={order.seller.name}
+                        price={order.price}
+                        status={order.status}
+                      />
+                    </Link>
+                  ))
+                ) : (
+                  <p className="text-white w-full h-[200px] bg-green-700 rounded-md mx-auto flex justify-center items-center text-[19px]">
+                    No orders found
                   </p>
                 )}
               </div>
