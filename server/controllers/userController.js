@@ -31,10 +31,23 @@ exports.getUser = async (req, res) => {
     const id = req.user._id;
 
     const user = await User.findById(id)
-      .populate('my_order')
+      .populate({
+        path: 'my_order',
+        populate: [{
+          path: 'listing',
+          select: 'images title desc location',
+          model: 'Listing'
+        },
+        {
+          path: 'buyer',
+          select: 'name ',
+          model: 'User'
+        }],
+      })
       .populate('my_listings')
       .populate('my_donations')
-      .populate('my_fundraisers');
+      .populate('my_fundraisers')
+      .lean();
 
     res.json(user);
   } catch (error) {
