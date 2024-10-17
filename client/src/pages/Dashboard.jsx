@@ -24,8 +24,8 @@ function DashBoard() {
       const response = await getUser();
 
       setUser(response);
-      console.log(response);
       // dont remove : for dev purpose
+      console.log("user : ", response);
       // console.log("my donations : ", response.my_donations);
       // console.log("my listings : ", response.my_listings);
       // console.log("my orders : ", response.my_order);
@@ -34,12 +34,8 @@ function DashBoard() {
       setMyListings(response.my_listings);
       setMyOrders(response.my_order);
       setMyFundraisers(response.my_fundraisers);
-      const listing = myListings[0];
-      const quantity_left =
-        ((listing.total_stock - listing.sold_stock) / listing.total_stock) *
-        100;
-      console.log("quantity_left", quantity_left);
-      console.log("true");
+
+
     } catch (error) {
       console.error("Error fetching user:", error);
     } finally {
@@ -50,6 +46,8 @@ function DashBoard() {
   useEffect(() => {
     fetchUser();
   }, []);
+
+  
   if (loading) {
     return (
       <div className="absolute inset-0 flex items-center justify-center text-black">
@@ -67,14 +65,14 @@ function DashBoard() {
           <h1 className="text-2xl font-bold mb-4 text-[#00B29F]">
             <p className="text-black">
               Hello,{" "}
-              <span className="text-[#00B29F]">{user.username || "Guest"}</span>
+              <span className="text-[#166d49]">{user.name || "Guest"}</span>
             </p>
           </h1>
           <div className="flex space-x-4">
             <button
               className={`py-2 px-4 ${
                 activeTab === "My Donations"
-                  ? "bg-[#00B29F] text-white rounded-[6px]"
+                  ? "bg-[#00b268] text-white rounded-[6px]"
                   : "bg-[#9c9c9c] text-white rounded-[6px]"
               }`}
               onClick={() => handleTabClick("My Donations")}
@@ -84,7 +82,7 @@ function DashBoard() {
             <button
               className={`py-2 px-4 ${
                 activeTab === "My Listings"
-                  ? "bg-[#00B29F] text-white rounded-[6px]"
+                  ? "bg-[#00b268] text-white rounded-[6px]"
                   : "bg-[#9c9c9c] text-white rounded-[6px]"
               }`}
               onClick={() => handleTabClick("My Listings")}
@@ -94,7 +92,7 @@ function DashBoard() {
             <button
               className={`py-2 px-4 ${
                 activeTab === "My Orders"
-                  ? "bg-[#00B29F] text-white rounded-[6px]"
+                  ? "bg-[#00b268] text-white rounded-[6px]"
                   : "bg-[#9c9c9c] text-white rounded-[6px]"
               }`}
               onClick={() => handleTabClick("My Orders")}
@@ -104,7 +102,7 @@ function DashBoard() {
             <button
               className={`py-2 px-4 ${
                 activeTab === "My Transactions"
-                  ? "bg-[#00B29F] text-white rounded-[6px]"
+                  ? "bg-[#00b268] text-white rounded-[6px]"
                   : "bg-[#9c9c9c] text-white rounded-[6px]"
               }`}
               onClick={() => handleTabClick("My Transactions")}

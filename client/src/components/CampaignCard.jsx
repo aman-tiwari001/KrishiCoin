@@ -3,10 +3,7 @@ import { MdOutlineTimer } from "react-icons/md";
 import { differenceInDays } from 'date-fns'; // Import date-fns
 
 function CampaignCard({ title, target, amtfunded, author, image, deadline }) {
-
-  console.log(amtfunded, target);
   const percfunded = (amtfunded/target) * 100;
-  console.log(percfunded);
   const daysLeft = differenceInDays(new Date(deadline), new Date());
   const truncatedTitle = title.length > 20 ? `${title.slice(0, 20)}...` : title;
 
