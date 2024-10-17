@@ -16,9 +16,9 @@ function Banner() {
 			.catch((error) => console.error('Error getting exchange rate:', error));
 	}, [usd]);
 	return (
-		<div className='w-full mt-6 h-[40vh] bg-red-500 flex justify-center items-center rounded-2xl banner-bg'>
-			<div className='text-center'>
-				<h2 className='text-2xl font-mono'>Your wallet balance</h2>
+		<div className='w-full mt-6 h-[40vh] bal-banner flex justify-center items-center rounded-2xl z-10'>
+			<div className='text-center w-full banner-bg rounded-2xl h-full flex flex-col items-center justify-center opacity-[0.85]'>
+				<h2 className='text-2xl text-gray-400 font-mono'>Your wallet balance</h2>
 				<div className='flex gap-x-5 items-baseline justify-center'>
 					<EthBalance
 						className='text-[3.5em] md:text-[5em] font-mono text-white font-light'

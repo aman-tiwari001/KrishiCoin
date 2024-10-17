@@ -14,7 +14,7 @@ export function Providers(props) {
     <WagmiProvider config={config} initialState={props.initialState}>
       <QueryClientProvider client={queryClient}>
         <OnchainKitProvider
-          apiKey={import.meta.ONCHAINKIT_API_KEY}
+          apiKey={import.meta.VITE_ONCHAINKIT_API_KEY}
           chain={base}
         >
           {props.children}
