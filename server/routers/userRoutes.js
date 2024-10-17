@@ -7,7 +7,7 @@ const verifyToken = require('../middlewares/verify');
 router.post('/create-user', userController.connectWallet);
 
 // get user
-router.get('/profile/:id', verifyToken, userController.getUser);
+router.get('/profile', verifyToken, userController.getUser);
 
 // check user
 router.get('/check-user', userController.checkUser);

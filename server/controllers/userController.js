@@ -28,14 +28,15 @@ exports.connectWallet = async (req, res) => {
 // res: user
 exports.getUser = async (req, res) => {
   try {
-    const { id } = req.params;
-    const user = await User.findById(id);
-    const token = jwt.sign(
-      { _id: user._id, wallet_address },
-      process.env.JWT_SECRET,
-      { expiresIn: '1h' }
-    );
-    res.json({ user, token });
+    const id = req.user._id;
+
+    const user = await User.findById(id)
+      .populate('my_order')
+      .populate('my_listings')
+      .populate('my_donations')
+      .populate('my_fundraisers');
+
+    res.json(user);
   } catch (error) {
     res.status(500).json({ message: 'Server error', error });
   }
@@ -48,7 +49,7 @@ exports.checkUser = async (req, res) => {
   try {
     const { wallet_address } = req.query;
     const user = await User.findOne({ wallet_address });
-    
+
     if (user) {
       const token = jwt.sign(
         { _id: user._id, wallet_address },

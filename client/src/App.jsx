@@ -6,11 +6,12 @@ import LandingPage from "./pages/LandingPage";
 import BaseName from "./pages/BaseName";
 import SellPage from "./pages/SellPage";
 import Donation from "./pages/DonationPage";
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from "react-hot-toast";
 import CampaignForm from "./components/CampaignForm";
 import AuthPage from "./pages/AuthPage";
 import MarketPlace from "./pages/MarketPlace";
 import ListingDetails from "./pages/ListingDetails";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   const location = useLocation();
@@ -32,6 +33,7 @@ function App() {
           <Route path="/campaignform" element={<CampaignForm />} />
           <Route path="/donate" element={<Donation />} />
           <Route path="/market" element={<MarketPlace />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </main>
     </>
@@ -41,7 +43,7 @@ function App() {
 export default function MainApp() {
   return (
     <BrowserRouter>
-      <Toaster/>
+      <Toaster />
       <App />
     </BrowserRouter>
   );
