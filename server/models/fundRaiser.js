@@ -8,6 +8,7 @@ const FundraiserSchema = new mongoose.Schema({
   images: { type: [String], required: true },
   owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   projectId: { type: Number, required: true },
+  amt_collected: { type: Number, default: 0 },
   donators: [
     {
       user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
@@ -15,6 +16,11 @@ const FundraiserSchema = new mongoose.Schema({
     }
   ]
 });
+FundraiserSchema.virtual('donatorsCount').get(function () {
+  return this.donators.length;
+});
+FundraiserSchema.set('toObject', { virtuals: true });
+FundraiserSchema.set('toJSON', { virtuals: true });
 
 const Fundraiser = mongoose.model('Fundraiser', FundraiserSchema);
 module.exports = Fundraiser;

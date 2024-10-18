@@ -39,6 +39,8 @@ exports.donateToFundraiser = async (req, res) => {
     const user = await User.findById(req.user._id);
 
     fundraiser.donators.push({ user: user._id, amount_donated: amount });
+    fundraiser.amt_collected += amount;
+    
     await fundraiser.save();
 
     user.my_donations.push({ fundraiser: fundraiser._id, amount });
@@ -75,18 +77,17 @@ exports.getFundraisers = async (req, res) => {
       .populate('owner', 'name wallet_address')
       .exec();
     const formattedFundraisers = fundraisers.map(fundraiser => {
-      const totalFunded = fundraiser.donators.reduce((total, donator) => {
-        return total + donator.amount_donated;
-      }, 0);
+    
 
       return {
         id: fundraiser._id,
         title: fundraiser.title,
         target: fundraiser.target_funds,
         deadline: fundraiser.deadline,
-        amtFunded: totalFunded,
+        amtFunded: fundraiser.amt_collected,
         image: fundraiser.images[0],
         owner: fundraiser.owner
+
       };
     });
 

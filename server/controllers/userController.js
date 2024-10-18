@@ -41,7 +41,7 @@ exports.getUser = async (req, res) => {
           },
           {
             path: 'buyer',
-            select: 'name ',
+            select: 'name',
             model: 'User'
           },
           {
@@ -53,11 +53,20 @@ exports.getUser = async (req, res) => {
       })
       .populate('my_listings')
       .populate('my_donations')
-      .populate('my_fundraisers')
+      .populate({
+        path: 'my_fundraisers',
+        select: 'title target_funds deadline amt_collected images'
+      })
       .lean();
+
+    user.my_fundraisers = user.my_fundraisers.map(fundraiser => ({
+      ...fundraiser,
+      donatorsCount: fundraiser.donators ? fundraiser.donators.length : 0
+    }));
 
     res.json(user);
   } catch (error) {
+    console.log(error.message);
     res.status(500).json({ message: 'Server error', error });
   }
 };
