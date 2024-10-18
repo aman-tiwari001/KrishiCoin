@@ -13,7 +13,7 @@ const CrowdFundDetails = () => {
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(0);
   const [error, setError] = useState("");
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const formatDate = (date) => {
     const options = { year: "numeric", month: "short", day: "numeric" };
@@ -147,10 +147,6 @@ const CrowdFundDetails = () => {
           {error && <h2 className="text-red-500 pl-4 m-2">{error}</h2>}
         </div>
 
-        {/* Add this table after the donation form */}
-
-
-
         <button
           onClick={donate}
           className={`btn mt-6 text-[#e0fce7] bg-[#233b2b] ${
@@ -161,35 +157,44 @@ const CrowdFundDetails = () => {
         </button>
 
         <div className="flex flex-col mt-8 bg-[#e8f5e9] rounded-lg p-4 mb-8">
-  <h2 className="text-xl font-semibold text-[#283e2f] mb-4">Supporters</h2>
-  <div className="overflow-y-auto h-48">
-    <table className="table-auto w-full text-left text-[#283e2f]">
-      <thead>
-        <tr className="bg-[#a5d6a7]">
-          <th className="px-4 py-2">No.</th>
-          <th className="px-4 py-2">Name</th>
-          <th className="px-4 py-2">Amount (USD)</th>
-          <th className="px-4 py-2">Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          fundraiser.donators ? (fundraiser.donators?.map((donator, index) => (
-            <tr key={index} className="bg-[#c8e6c9]">
-              <td className="border px-4 py-2">{index + 1}</td>
-              <td className="border px-4 py-2">{donator.user.name}</td>
-              <td className="border px-4 py-2">${donator.amount_donated}</td>
-              <td className="border px-4 py-2">{ formatDate(donator.donated_at) }</td>
-            </tr>
-          )))
-          : <tr className="bg-[#c8e6c9]">
-            <td className="border px-4 py-2" colSpan="4">No supporters yet</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </div>
-</div>
+          <h2 className="text-xl font-semibold text-[#283e2f] mb-4">
+            Supporters
+          </h2>
+          <div className="overflow-y-auto h-48">
+            <table className="table-auto w-full text-left text-[#283e2f]">
+              <thead>
+                <tr className="bg-[#a5d6a7]">
+                  <th className="px-4 py-2">No.</th>
+                  <th className="px-4 py-2">Name</th>
+                  <th className="px-4 py-2">Amount (USD)</th>
+                  <th className="px-4 py-2">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {fundraiser.donators ? (
+                  fundraiser.donators?.map((donator, index) => (
+                    <tr key={index} className="bg-[#c8e6c9]">
+                      <td className="border px-4 py-2">{index + 1}</td>
+                      <td className="border px-4 py-2">{donator.user.name}</td>
+                      <td className="border px-4 py-2">
+                        ${donator.amount_donated}
+                      </td>
+                      <td className="border px-4 py-2">
+                        {formatDate(donator.donated_at)}
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr className="bg-[#c8e6c9]">
+                    <td className="border px-4 py-2" colSpan="4">
+                      No supporters yet
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   );
