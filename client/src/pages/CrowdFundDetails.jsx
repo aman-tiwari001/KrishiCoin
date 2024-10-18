@@ -33,6 +33,8 @@ const CrowdFundDetails = () => {
   const getFundraiserDetail = async () => {
     try {
       const response = await getFundraiser(id);
+      console.log("response", response);
+      console.log("response", response.donators?.length);
       setFundraiser(response);
     } catch (error) {
       console.error("Error fetching fundraiser:", error);
@@ -161,9 +163,10 @@ const CrowdFundDetails = () => {
             Supporters
           </h2>
           <div className="overflow-y-auto h-48">
-            <table className="table-auto w-full text-left text-[#283e2f]">
+            {fundraiser.donators && fundraiser.donators.length > 0? 
+            <table className="table-auto w-full text-left text-[#283e2f] rounded-md">
               <thead>
-                <tr className="bg-[#a5d6a7]">
+                <tr className="bg-[#74d677]">
                   <th className="px-4 py-2">No.</th>
                   <th className="px-4 py-2">Name</th>
                   <th className="px-4 py-2">Amount (USD)</th>
@@ -171,7 +174,7 @@ const CrowdFundDetails = () => {
                 </tr>
               </thead>
               <tbody>
-                {fundraiser.donators ? (
+                {(
                   fundraiser.donators?.map((donator, index) => (
                     <tr key={index} className="bg-[#c8e6c9]">
                       <td className="border px-4 py-2">{index + 1}</td>
@@ -184,15 +187,16 @@ const CrowdFundDetails = () => {
                       </td>
                     </tr>
                   ))
-                ) : (
-                  <tr className="bg-[#c8e6c9]">
-                    <td className="border px-4 py-2" colSpan="4">
-                      No supporters yet
-                    </td>
-                  </tr>
                 )}
               </tbody>
             </table>
+                : (
+                  <div className="bg-[#158319] my-2 rounded-md">
+                    <p className="border px-4 py-2 text-white font-semibold text-center">
+                      No supporters yet
+                    </p>
+                  </div>
+                )}
           </div>
         </div>
       </div>
