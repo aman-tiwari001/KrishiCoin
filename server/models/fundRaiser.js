@@ -21,6 +21,6 @@ FundraiserSchema.virtual('donatorsCount').get(function () {
 });
 FundraiserSchema.set('toObject', { virtuals: true });
 FundraiserSchema.set('toJSON', { virtuals: true });
-
+  
 const Fundraiser = mongoose.model('Fundraiser', FundraiserSchema);
 module.exports = Fundraiser;

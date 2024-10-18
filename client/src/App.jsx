@@ -9,6 +9,7 @@ import Donation from "./pages/DonationPage";
 import { Toaster } from "react-hot-toast";
 import CampaignForm from "./components/CampaignForm";
 import AuthPage from "./pages/AuthPage";
+import CrowdFundDetails from "./pages/CrowdFundDetails";
 import MarketPlace from "./pages/MarketPlace";
 import ListingDetails from "./pages/ListingDetails";
 import Dashboard from "./pages/Dashboard";
@@ -32,6 +33,7 @@ function App() {
           <Route path="/listing/:id" element={<ListingDetails />} />
           <Route path="/campaignform" element={<CampaignForm />} />
           <Route path="/donate" element={<Donation />} />
+          <Route path="/crowdfundlisting" element={<CrowdFundDetails />} />
           <Route path="/market" element={<MarketPlace />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
