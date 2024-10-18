@@ -8,7 +8,8 @@ const UserSchema = new mongoose.Schema({
   my_donations: [
     {
       fundraiser: { type: mongoose.Schema.Types.ObjectId, ref: 'Fundraiser' },
-      amount: { type: Number, required: true }
+      amount: { type: Number, required: true },
+      donated_at: { type: Date, default: Date.now }
     }
   ],
   my_fundraisers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Fundraiser' }],

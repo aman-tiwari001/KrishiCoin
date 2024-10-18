@@ -12,12 +12,13 @@ const FundraiserSchema = new mongoose.Schema({
   donators: [
     {
       user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-      amount_donated: { type: Number, required: true }
+      amount_donated: { type: Number, required: true },
+      donated_at: { type: Date, default: Date.now }
     }
   ]
 });
 FundraiserSchema.virtual('donatorsCount').get(function () {
-  return this.donators.length;
+  return this.donators?.length;
 });
 FundraiserSchema.set('toObject', { virtuals: true });
 FundraiserSchema.set('toJSON', { virtuals: true });

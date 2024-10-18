@@ -6,6 +6,7 @@ import CustomLoader from "../components/CustomLoader";
 import Listings from "../components/dashboard/MyListings";
 import Orders from "../components/dashboard/MyOrders";
 import FundRaisers from "../components/dashboard/MyFundRaisers";
+import Donations from "../components/dashboard/MyDonations";
 
 function DashBoard() {
   const [activeTab, setActiveTab] = useState("My Donations");
@@ -27,7 +28,7 @@ function DashBoard() {
 
       setUser(response);
       // dont remove : for dev purpose
-      console.log("user : ", response);
+      // console.log("user : ", response);
       // console.log("my donations : ", response.my_donations);
       // console.log("my listings : ", response.my_listings);
       // console.log("my orders : ", response.my_order);
@@ -111,11 +112,24 @@ function DashBoard() {
           <div className="mt-4 mb-4">
             {activeTab === "My Donations" && (
               <div className="flex flex-col gap-2">
-                {/* {user.my_donations.map((donations, index) => (
-                  <Link to={`/details/${donations.listing._id}`} key={index}>
-                    
-                  </Link>
-                ))} */}
+                {myDonations.length > 0 ? (
+                  myDonations.map((donations, index) => (
+                    <Link to={`/campaign/${donations.fundraiser._id}`} key={index}>
+                      <Donations
+                        id={donations.fundraiser._id}
+                        src={donations.fundraiser.images[0]}
+                        title={donations.fundraiser.title}
+                        donated_at={donations.donated_at}
+                        amount={donations.amount}
+                        owner={donations.fundraiser.owner.name}
+                      />
+                    </Link>
+                  ))
+                ) : (
+                  <p className="text-white w-full h-[200px] bg-green-700 rounded-md mx-auto flex justify-center items-center text-[19px]">
+                    No donations found
+                  </p>
+                )}
               </div>
             )}
 
@@ -173,15 +187,14 @@ function DashBoard() {
               <div className="flex flex-col gap-2">
                 {myFundraisers.length > 0 ? (
                   myFundraisers.map((fundraiser, index) => (
-                    <Link to={`/fundraiser/${fundraiser._id}`} key={index}>
+                    <Link to={`/campaign/${fundraiser._id}`} key={index}>
                       <FundRaisers
                         src={fundraiser.images[0]}
                         title={fundraiser.title}
                         deadline={fundraiser.deadline}
                         price={fundraiser.price}
                         funded={
-                          ((fundraiser.amt_collected) /
-                            fundraiser.target_funds) *
+                          (fundraiser.amt_collected / fundraiser.target_funds) *
                           100
                         }
                         donators_cnt={fundraiser.donatorsCount}
