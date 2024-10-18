@@ -33,7 +33,7 @@ function App() {
           <Route path="/listing/:id" element={<ListingDetails />} />
           <Route path="/campaignform" element={<CampaignForm />} />
           <Route path="/donate" element={<Donation />} />
-          <Route path="/crowdfundlisting" element={<CrowdFundDetails />} />
+          <Route path="/campaign/:id" element={<CrowdFundDetails />} />
           <Route path="/market" element={<MarketPlace />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>

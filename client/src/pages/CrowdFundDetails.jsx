@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from "../components/Carousel";
 import ProgressBar from "../components/ProgressBar";
+import { useParams } from "react-router-dom";
+import CustomLoader from "../components/CustomLoader";
+import { getFundraiser } from "../apis/fundRaiser";
+import { formatDistanceStrict, isPast } from "date-fns";
 
 const images = [
   "https://t3.ftcdn.net/jpg/01/85/36/76/240_F_185367679_Me2IGPUlNgmA3xJdbewSlT0jIM9RqGx2.jpg",
@@ -24,60 +28,99 @@ const product = {
 };
 
 const CrowdFundDetails = () => {
+  const { id } = useParams();
+  const [fundraiser, setFundraiser] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(0);
   const [total, setTotal] = useState(0);
+  const [error, setError] = useState("");
 
   const handleQuantityChange = (e) => {
     const qty = parseInt(e.target.value, 10) || 0;
-    setQuantity(qty);
-    setTotal(qty * product.price);
+    if (qty === 0) {
+      setError("Quantity cannot be 0");
+      setQuantity(qty);
+      setTotal(0);
+    } else {
+      setQuantity(qty);
+      setTotal(qty * product.price);
+    }
   };
+
+  const getFundraiserDetail = async () => {
+    try {
+      const response = await getFundraiser(id);
+      setFundraiser(response);
+      console.log(response);
+    } catch (error) {
+      console.error("Error fetching fundraiser:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getFundraiserDetail();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="absolute inset-0 flex items-center justify-center text-black">
+        <div className="flex items-center gap-4">
+          <CustomLoader /> Fetching Campaign Details...
+        </div>
+      </div>
+    );
+  }
+
+  const deadlineDate = new Date(fundraiser.deadline);
+  const daysLeft = formatDistanceStrict(deadlineDate, new Date());
+  const deadlineExpired = isPast(deadlineDate);
+  const deadlineMessage = deadlineExpired ? "Expired" : `${daysLeft} left`;
 
   return (
     <div className=" flex flex-row items-start  ml-0 h-minus-80 overflow-hidden">
       <div className="flex flex-col p-3 bg-red-00  h-[99vh] pt-12 w-1/2 ">
         <div className=" h-[310px] w-[430px]  m-12 ">
-          <Carousel images={images} /> {/* Pass images to the Carousel */}
+          <Carousel images={fundraiser.images} />
         </div>
         <h2 className="text-2xl bg-red-3 flex items-center justify-between pl-2 text-[#283e2f] ">
-          <div>{product.title}</div>
+          <div>{fundraiser.title}</div>
           {/* <h5 className="text-base mr-4">~by {product.owner}</h5> */}
         </h2>
-        <h2 className="bg-cyan-00 p-2 overflow-scroll">
-          {product.description}
-        </h2>
+        <h2 className="bg-cyan-00 p-2 overflow-scroll">{fundraiser.desc}</h2>
       </div>
 
       <div className=" flex flex-col p-3 bg-red-00  h-[99vh] pt-14 w-1/2">
-      <h2 className="text-2xl font-semibold  mt-12 text-[#283e2f] ">
-          For Helping,  {product.owner}
+        <h2 className="text-2xl font-semibold  mt-12 text-[#283e2f] ">
+          For Helping, {fundraiser.owner.name}
         </h2>
         <h2 className="text-6xl font-semibold pl-8 mt-10 text-slate-700 ">
-          $ {product.amt_collected}
+          $ {fundraiser.amt_collected}
         </h2>
         <h2 className="text-sm font-normal pl-8 pt-2  text-[#283e2f] ">
           <span>raised of </span>
           <span className="text-slate-500 text-lg font-medium">
             {" "}
-            USD {product.target_fund}
+            USD {fundraiser.target_funds}
           </span>
           <span> Goal</span>
         </h2>
         <ProgressBar
-          currentAmount={product.amt_collected}
-          targetAmount={product.target_fund}
+          currentAmount={fundraiser.amt_collected}
+          targetAmount={fundraiser.target_funds}
         />
 
         <div className="flex mt-10 justify-between items-center">
           <div className="flex items-center">
             <h2 className="text-xl font-semibold pl-2  text-[#283e2f] ">
-              {product.deadline}
+              {deadlineMessage}
             </h2>
-            <h2 className="text-lg pl-4   text-[#283e2f] ">Days left</h2>
+            {/* <h2 className="text-lg pl-4   text-[#283e2f] ">Days left</h2> */}
           </div>
           <div className="flex items-center">
             <h2 className="text-xl font-semibold pl-2  text-[#283e2f] ">
-              {product.supporters}
+              {fundraiser.donatorsCount}
             </h2>
             <h2 className="text-lg pl-4   text-[#283e2f] ">supporters</h2>
           </div>
@@ -101,7 +144,9 @@ const CrowdFundDetails = () => {
           ></input>
         </div>
 
-        <div className="btn mt-6 text-[#e0fce7] bg-[#233b2b]">Contribute Now</div>
+        <div className="btn mt-6 text-[#e0fce7] bg-[#233b2b]">
+          Contribute Now
+        </div>
       </div>
     </div>
   );

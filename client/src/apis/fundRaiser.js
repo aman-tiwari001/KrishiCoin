@@ -28,3 +28,16 @@ export const getFundraisers = async () => {
     throw error;
   }
 };
+
+export const getFundraiser = async (id) => {
+  try {
+    const response = await axiosInstance.get(`/api/fundraisers/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Error fetching fundraiser:",
+      error.response ? error.response.data : error.message
+    );
+    throw error;
+  }
+};

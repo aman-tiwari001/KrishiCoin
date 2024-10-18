@@ -1,15 +1,22 @@
 import React from "react";
 import { MdOutlineTimer } from "react-icons/md";
 import { differenceInDays, formatDistanceStrict, isPast } from "date-fns"; // Import date-fns
+import { Link } from "react-router-dom";
 
-function CampaignCard({ title, target, amtfunded, author, image, deadline }) {
+function CampaignCard({
+  id,
+  title,
+  target,
+  amtfunded,
+  author,
+  image,
+  deadline,
+}) {
   const percfunded = (amtfunded / target) * 100;
   const deadlineDate = new Date(deadline);
   const daysLeft = formatDistanceStrict(deadlineDate, new Date());
   const deadlineExpired = isPast(deadlineDate);
-  const deadlineMessage = deadlineExpired
-    ? "Expired"
-    : `${daysLeft} left`;
+  const deadlineMessage = deadlineExpired ? "Expired" : `${daysLeft} left`;
   const truncatedTitle = title.length > 20 ? `${title.slice(0, 20)}...` : title;
 
   return (
@@ -36,9 +43,11 @@ function CampaignCard({ title, target, amtfunded, author, image, deadline }) {
 
           <h3 className="text-sm">{percfunded.toFixed(0)}% Funded</h3>
 
-          <button className="btn bg-[#778457] border-0 text-white text-sm py-1 px-3 rounded-md">
-            Contribute Now
-          </button>
+          <Link to={`/campaign/${id}`}>
+            <button className="btn bg-[#778457] border-0 text-white text-sm py-1 px-3 rounded-md">
+              Contribute Now
+            </button>
+          </Link>
         </div>
       </div>
     </div>
