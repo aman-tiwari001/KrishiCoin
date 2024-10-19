@@ -69,7 +69,7 @@ function BlogPage() {
           </button>
         </Link>
       </div>
-      <div className="flex h-screen-minus-80 overflow-y-auto flex-wrap gap-8 justify-center p-8">
+      <div className="flex gap-4 overflow-y-auto flex-wrap justify-center p-8">
         {filteredBlogs && filteredBlogs.length > 0 ? (
           filteredBlogs.map((blog) => (
             <BlogCard

@@ -3,7 +3,7 @@ const User = require('../models/user');
 
 exports.createBlog = async (req, res) => {
   try {
-    const { title, content, image } = req.body;
+    let { title, content, image } = req.body;
     if (!content){
       content = 'No content provided';
     }
