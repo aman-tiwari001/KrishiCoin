@@ -14,6 +14,7 @@ import MarketPlace from "./pages/MarketPlace";
 import ListingDetails from "./pages/ListingDetails";
 import Dashboard from "./pages/Dashboard";
 import BlogPage from "./pages/BlogPage";
+import BlogForm from "./pages/BlogForm";
 
 function App() {
   const location = useLocation();
@@ -31,6 +32,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/get-basename" element={<BaseName />} />
           <Route path="/sell" element={<SellPage />} />
+          <Route path="/blogform" element={<BlogForm />} />
           <Route path="/listing/:id" element={<ListingDetails />} />
           <Route path="/campaignform" element={<CampaignForm />} />
           <Route path="/donate" element={<Donation />} />
