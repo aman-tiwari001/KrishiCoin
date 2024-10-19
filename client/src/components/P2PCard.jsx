@@ -48,7 +48,7 @@ function P2PCard({ id, title, image, price, user, quantityLeft, quantity }) {
           <h3 className="text-md font-bold ml-2">$ {price} / Quintal</h3>
 
           <Link to={`/listing/${id}`}>
-            <button className="btn bg-[#778457] border-0 text-white text-sm py-1 px-3 rounded-md">
+            <button className="btn btn-success bg-[#778457] border-0 text-white text-sm py-1 px-3 rounded-md">
               Order Now
             </button>
           </Link>
