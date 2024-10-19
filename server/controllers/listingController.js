@@ -5,7 +5,8 @@ const User = require('../models/user');
 // req.body: { title, desc, price, total_stock, images, location }
 // res: listing
 exports.createListing = async (req, res) => {
-  const { title, desc, price, total_stock, images, location } = req.body;
+  const { title, desc, price, total_stock, images, location, listingId } =
+    req.body;
 
   try {
     const listing = new Listing({
@@ -15,7 +16,8 @@ exports.createListing = async (req, res) => {
       total_stock,
       images,
       location,
-      owner: req.user._id
+      owner: req.user._id,
+      listingId
     });
     await listing.save();
 
@@ -34,7 +36,9 @@ exports.createListing = async (req, res) => {
 // res: listing
 exports.getListing = async (req, res) => {
   try {
-    const listing = await Listing.findById(req.params.id).populate('owner').exec();
+    const listing = await Listing.findById(req.params.id)
+      .populate('owner')
+      .exec();
 
     if (!listing) return res.status(404).json({ message: 'Listing not found' });
 

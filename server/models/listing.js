@@ -13,7 +13,8 @@ const ListingSchema = new mongoose.Schema({
       order: { type: mongoose.Schema.Types.ObjectId, ref: 'Order' }
     }
   ],
-  sold_stock: { type: Number, default: 0 }
+  sold_stock: { type: Number, default: 0 },
+  listingId: { type: Number, required: true },
 });
 
 const Listing = mongoose.model('Listing', ListingSchema);

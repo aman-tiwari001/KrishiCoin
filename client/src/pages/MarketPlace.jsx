@@ -34,6 +34,8 @@ function MarketPlace() {
   return (
     <div className="h-screen">
       <div className="h-[80px]"></div>
+      <h1 className='text-3xl mt-5 text-theme text-center'>P2P Marketplace</h1>
+      <h1 className='text-gray-500 text-center'>(For farmer produces and crops)</h1>
       <div className="flex h-screen-minus-80 overflow-y-auto flex-wrap gap-8 justify-center p-8">
         {
           products.length > 0 ? (

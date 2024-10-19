@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.28;
 
 contract P2PMarketplace {
     // Data structure for a listed agricultural item
@@ -66,8 +66,8 @@ contract P2PMarketplace {
         uint256 _maxDeliveryTime
     ) public {
         require(_totalStock > 0, "Stock must be greater than zero.");
-        require(_pricePerQuintal > 0, "Price per 50kg must be greater than zero.");
-        require(_maxDeliveryTime > 0 && _maxDeliveryTime < 30, "Price per 50kg must be greater than zero.");
+        require(_pricePerQuintal > 0, "Price per Quintal must be greater than zero.");
+        require(_maxDeliveryTime > 0 && _maxDeliveryTime <= 30, "Max delivery time should be less than or equal to 30 days");
 
         items[_listingId] = Item({
             listingId: _listingId,
@@ -122,8 +122,8 @@ contract P2PMarketplace {
         require(order.orderId != 0, "Order not found.");
         require(!order.isShipped, "Order already shipped.");
         require(items[order.listingId].farmer == msg.sender, "Only the farmer can ship this order.");
-        uint256 maxDeliveryTime = block.timestamp + (items[order.listingId].maxDeliveryTime * 1 days);
-        require(block.timestamp <= maxDeliveryTime, "Order can't be shipped after maximum delivery time");
+        uint256 maxDeliveryTimestamp = block.timestamp + (items[order.listingId].maxDeliveryTime * 1 days);
+        require(block.timestamp <= maxDeliveryTimestamp, "Order can't be shipped after maximum delivery time");
 
         order.isShipped = true;
 
@@ -149,10 +149,11 @@ contract P2PMarketplace {
     // Function for buyer to withdraw funds locked in contract if order is not shipped even after the max delivery time
     function withdrawBuyerFunds(uint256 _orderId) public onlyBuyer(_orderId) {
       Order storage order = orders[_orderId];
-      uint256 maxDeliveryTime = block.timestamp + (items[order.listingId].maxDeliveryTime * 1 days);
-      require(block.timestamp > maxDeliveryTime, "Funds can only be withdrawn after the max delivery time");
+      uint256 maxDeliveryTimestamp = block.timestamp + (items[order.listingId].maxDeliveryTime * 1 days);
+      require(block.timestamp > maxDeliveryTimestamp, "Funds can only be withdrawn after the max delivery time");
       require(!order.isShipped, "Item is shipped");
       payable(msg.sender).transfer(order.totalPrice);
+      items[order.listingId].totalStock += order.quantity;
       emit BuyerWithdrawFunds(msg.sender, _orderId);
     }
 

@@ -166,7 +166,7 @@ const ListingDetails = () => {
             error ? "disabled cursor-not-allowed opacity-50" : ""
           }`}
         >
-          <p>Buy Now</p>
+          <p>Create Order & Make Payment</p>
         </button>
       </div>
     </div>

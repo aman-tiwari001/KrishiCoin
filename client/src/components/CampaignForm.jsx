@@ -61,7 +61,7 @@ const CampaignForm = () => {
 		await fetchExRate();
 		const tx = await cwfContract.createProject(
 			data._name,
-			data._targetFunds * exchangeRate * 10 ** 18, // in wei
+			data._targetFunds * exchangeRate.toFixed(6) * 10 ** 18, // in wei
 			data._deadline,
 			data._projectId
 		);
@@ -71,7 +71,7 @@ const CampaignForm = () => {
 	const onSubmit = async (data) => {
 		try {
 			setIsSubmitting(true);
-			const res = (await getFundraisers());
+			const res = await getFundraisers();
 			const projectId = res.length + 1;
 			if (cwfContract) {
 				await handleCreateFundraiserOnChain({
@@ -80,6 +80,11 @@ const CampaignForm = () => {
 					_deadline: new Date(data.deadline).getTime(),
 					_projectId: projectId,
 				});
+			} else {
+				toast.error(
+					'Unable to connect to the contract, please try again later'
+				);
+				return;
 			}
 			const payload = {
 				title: data.title,
@@ -227,10 +232,10 @@ const CampaignForm = () => {
 									onChange: (e) => {
 										setAmount(e.target.value);
 									},
-									min:{
+									min: {
 										value: 100,
-										message: 'Minimum target amount is 100 USD'
-									}
+										message: 'Minimum target amount is 100 USD',
+									},
 								})}
 								className='mt-1 w-full px-3 py-2 bg-white text-black border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
 							/>

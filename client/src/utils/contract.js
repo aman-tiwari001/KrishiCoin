@@ -4,7 +4,7 @@ import p2pAbi from '../../../contracts/abi/p2p.json';
 import { toast } from 'react-hot-toast';
 
 export const cwfContractAddress = '0x5F7B8Efb3c8B1836E4d991C51d6379407CC8237b';
-export const p2pContractAddress = '0x3759a8212DF0263d670a99b8525A1d2a668B0726';
+export const p2pContractAddress = '0x9B49E0C2bdCDD2e0Cc7f5808A0B039F50366DE2A';
 
 const desiredNetwork = {
 	chainId: '0x14a34',

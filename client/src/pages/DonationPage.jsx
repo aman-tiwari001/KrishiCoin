@@ -36,7 +36,7 @@ function DonationPage() {
       <h1 className="pt-3 text-center text-3xl font-bold text-theme">
         Active Fundraisers
       </h1>
-      <h2 className="text-center text-gray-600">(Crowdfunding compaigns)</h2>
+      <h2 className="text-center text-gray-600">(Crowdfunding campaigns)</h2>
       <div className="flex h-screen-minus-80 overflow-y-auto flex-wrap gap-8 justify-center p-8">
         {campaigns.length > 0 ? (
           campaigns.map((campaign) => (

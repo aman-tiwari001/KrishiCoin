@@ -34,6 +34,7 @@ function Banner() {
 				</div>
 				<p className='font-mono'>1 ETH = ${usd}</p>
 			</div>
+			
 		</div>
 	);
 }

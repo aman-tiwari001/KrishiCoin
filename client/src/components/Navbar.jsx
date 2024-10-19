@@ -3,7 +3,7 @@ import WalletComponent from './WalletComponent';
 
 const Navbar = () => {
 	return (
-		<div className='bg-[url(/grass.jpg)] bg-cover w-full h-[80px] z-20 fixed top-0 flex items-center justify-between py-2 px-6 shadow-md'>
+		<div className='bg-white bg-cover w-full h-[80px] z-20 fixed top-0 flex items-center justify-between py-2 px-6 shadow-md'>
 			<Link to={'/'}>
 				<div className='flex items-center space-x-2 '>
 					<img src='/krishi-coin-logo.png' alt='Logo' className='h-12' />

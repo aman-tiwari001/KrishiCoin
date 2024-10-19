@@ -49,7 +49,7 @@ function P2PCard({ id, title, image, price, user, quantityLeft, quantity }) {
 
           <Link to={`/listing/${id}`}>
             <button className="btn bg-[#778457] border-0 text-white text-sm py-1 px-3 rounded-md">
-              Explore Offer
+              Order Now
             </button>
           </Link>
         </div>
