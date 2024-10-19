@@ -69,7 +69,18 @@ exports.getUser = async (req, res) => {
       })
       .populate({
         path: 'my_fundraisers',
-        select: 'title target_funds donators deadline amt_collected images'
+        select: 'title target_funds projectId donators deadline amt_collected images',
+        populate: [
+          {
+            path: 'donators',
+            model: 'Fundraiser',
+            populate: {
+              path: 'user',
+              select: 'name wallet_address',
+              model: 'User'
+            }
+          }
+        ]
       })
       .lean();
 

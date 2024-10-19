@@ -61,7 +61,7 @@ function RightCards() {
 				<div className='w-full bg-[#19747E] cards2-bg rounded-2xl  '>
 					<div className='w-[100%] h-[100%] bg-gradient-to-br from-[#20705b] to-[#012513] flex flex-col items-center justify-center shadow-lg opacity-[0.85] px-4 py-6 rounded-2xl  '>
 						<h2 className='text-[#e0fce7] text-2xl font-semibold mb-4 flex items-center gap-2'>
-							Join Communities
+							Community Writes
 							<MdMenuBook />
 						</h2>
 						<p className='text-[#e0fce7] text-left text-sm mb-4'>
