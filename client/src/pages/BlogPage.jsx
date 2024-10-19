@@ -63,7 +63,7 @@ function BlogPage() {
           </svg>
         </label>
 
-        <Link to="/sell">
+        <Link to="/blogform">
           <button className="btn btn-success flex items-center gap-2 bg-[#2bac4b] px-4 py-2 rounded-lg text-white">
             <IoMdAddCircle className="text-lg" /> Write your Blog
           </button>
