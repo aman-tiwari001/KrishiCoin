@@ -68,6 +68,13 @@ body {
   }
 }
 
+.flex_fix_invert {
+  display:  flex !important;
+  flex-direction: row !important;
+  @media (width<768px) {
+    flex-direction: column !important;
+  }
+}
 .bal-banner {
   background-image: url('/coin-farm.jpg');
   background-size: cover;
