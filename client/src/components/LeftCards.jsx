@@ -13,16 +13,18 @@ function LeftCards() {
 		<div className='w-full md:w-[40%] h-[50vh] flex flex-col-reverse gap-2 py-4'>
 			{/* Top Card */}
 			<div className=' w-full h-1/2 bg-white rounded-2xl cards-bg shadow-lg cursor-pointer'>
-				<div className='w-[100%] h-[100%] bg-gradient-to-b from-[#283618] to-black opacity-[0.8] rounded-2xl flex flex-col items-start px-20 justify-center '>
-					<h1 className='text-4xl text-[#e0fce7] font-semibold flex gap-4 items-center'>
-						<MdDashboard />
-						Your Dashboard
-					</h1>
-					<br />
-					<p className='text-md'>
-						Manage your investments, orders, purchases, donations, etc
-					</p>
-				</div>
+				<Link to='/dashboard' className='w-full h-full'>
+					<div className='w-[100%] h-[100%] bg-gradient-to-b from-[#283618] to-black opacity-[0.8] rounded-2xl flex flex-col items-start px-20 justify-center '>
+						<h1 className='text-4xl text-[#e0fce7] font-semibold flex gap-4 items-center'>
+							<MdDashboard />
+							Your Dashboard
+						</h1>
+						<br />
+						<p className='text-md'>
+							Manage your investments, orders, purchases, donations, etc
+						</p>
+					</div>
+				</Link>
 			</div>
 
 			{/* 2 small cards */}

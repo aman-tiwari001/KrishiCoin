@@ -37,7 +37,7 @@ const AuthPage = () => {
 
 	return (
 		<div className='pt-28 text-black'>
-			<h1 className='text-center text-4xl'>Create your account ✅</h1>
+			<h1 className='text-center text-theme text-4xl'>Create your account ✅</h1>
 			<div className='flex w-full items-center justify-center gap-x-36'>
 				<form
 					onSubmit={handleSubmit(onSubmit)}
