@@ -15,6 +15,7 @@ import ListingDetails from "./pages/ListingDetails";
 import Dashboard from "./pages/Dashboard";
 import BlogPage from "./pages/BlogPage";
 import BlogForm from "./pages/BlogForm";
+import BlogDetails from "./pages/BlogDetails";
 
 function App() {
   const location = useLocation();
@@ -39,6 +40,7 @@ function App() {
           <Route path="/campaign/:id" element={<CrowdFundDetails />} />
           <Route path="/market" element={<MarketPlace />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blogdetails" element={<BlogDetails />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </main>
