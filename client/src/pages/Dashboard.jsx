@@ -4,6 +4,9 @@ import toast from "react-hot-toast";
 import { getUser } from "../apis/auth";
 import CustomLoader from "../components/CustomLoader";
 import Listings from "../components/dashboard/MyListings";
+import Orders from "../components/dashboard/MyOrders";
+import FundRaisers from "../components/dashboard/MyFundRaisers";
+import Donations from "../components/dashboard/MyDonations";
 
 function DashBoard() {
   const [activeTab, setActiveTab] = useState("My Donations");
@@ -25,7 +28,7 @@ function DashBoard() {
 
       setUser(response);
       // dont remove : for dev purpose
-      console.log("user : ", response);
+      // console.log("user : ", response);
       // console.log("my donations : ", response.my_donations);
       // console.log("my listings : ", response.my_listings);
       // console.log("my orders : ", response.my_order);
@@ -34,8 +37,6 @@ function DashBoard() {
       setMyListings(response.my_listings);
       setMyOrders(response.my_order);
       setMyFundraisers(response.my_fundraisers);
-
-
     } catch (error) {
       console.error("Error fetching user:", error);
     } finally {
@@ -46,8 +47,6 @@ function DashBoard() {
   useEffect(() => {
     fetchUser();
   }, []);
-
-  
   if (loading) {
     return (
       <div className="absolute inset-0 flex items-center justify-center text-black">
@@ -101,23 +100,36 @@ function DashBoard() {
             </button>
             <button
               className={`py-2 px-4 ${
-                activeTab === "My Transactions"
+                activeTab === "My Fundraisers"
                   ? "bg-[#00b268] text-white rounded-[6px]"
                   : "bg-[#9c9c9c] text-white rounded-[6px]"
               }`}
-              onClick={() => handleTabClick("My Transactions")}
+              onClick={() => handleTabClick("My Fundraisers")}
             >
-              My Transactions
+              My Fundraisers
             </button>
           </div>
           <div className="mt-4 mb-4">
             {activeTab === "My Donations" && (
               <div className="flex flex-col gap-2">
-                {/* {user.my_donations.map((donations, index) => (
-                  <Link to={`/details/${donations.listing._id}`} key={index}>
-                    
-                  </Link>
-                ))} */}
+                {myDonations.length > 0 ? (
+                  myDonations.map((donations, index) => (
+                    <Link to={`/campaign/${donations.fundraiser._id}`} key={index}>
+                      <Donations
+                        id={donations.fundraiser._id}
+                        src={donations.fundraiser.images[0]}
+                        title={donations.fundraiser.title}
+                        donated_at={donations.donated_at}
+                        amount={donations.amount}
+                        owner={donations.fundraiser.owner.name}
+                      />
+                    </Link>
+                  ))
+                ) : (
+                  <p className="text-white w-full h-[200px] bg-green-700 rounded-md mx-auto flex justify-center items-center text-[19px]">
+                    No donations found
+                  </p>
+                )}
               </div>
             )}
 
@@ -143,6 +155,56 @@ function DashBoard() {
                 ) : (
                   <p className="text-white w-full h-[200px] bg-green-700 rounded-md mx-auto flex justify-center items-center text-[19px]">
                     No listings found
+                  </p>
+                )}
+              </div>
+            )}
+
+            {activeTab === "My Orders" && (
+              <div className="flex flex-col gap-2">
+                {myOrders.length > 0 ? (
+                  myOrders.map((order, index) => (
+                    <Link to={`/listing/${order.listing._id}`} key={index}>
+                      <Orders
+                        src={order.listing.images[0]}
+                        title={order.listing.title}
+                        desc={order.listing.desc}
+                        seller={order.seller.name}
+                        price={order.price}
+                        status={order.status}
+                      />
+                    </Link>
+                  ))
+                ) : (
+                  <p className="text-white w-full h-[200px] bg-green-700 rounded-md mx-auto flex justify-center items-center text-[19px]">
+                    No orders found
+                  </p>
+                )}
+              </div>
+            )}
+
+            {activeTab === "My Fundraisers" && (
+              <div className="flex flex-col gap-2">
+                {myFundraisers.length > 0 ? (
+                  myFundraisers.map((fundraiser, index) => (
+                    <Link to={`/campaign/${fundraiser._id}`} key={index}>
+                      <FundRaisers
+                        src={fundraiser.images[0]}
+                        title={fundraiser.title}
+                        deadline={fundraiser.deadline}
+                        price={fundraiser.price}
+                        funded={
+                          (fundraiser.amt_collected / fundraiser.target_funds) *
+                          100
+                        }
+                        donators_cnt={fundraiser.donatorsCount}
+                        amt_collected={fundraiser.amt_collected}
+                      />
+                    </Link>
+                  ))
+                ) : (
+                  <p className="text-white w-full h-[200px] bg-green-700 rounded-md mx-auto flex justify-center items-center text-[19px]">
+                    No fundraisers found
                   </p>
                 )}
               </div>

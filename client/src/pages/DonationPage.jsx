@@ -41,6 +41,7 @@ function DonationPage() {
         {campaigns.length > 0 ? (
           campaigns.map((campaign) => (
             <CampaignCard
+            id={campaign.id}
               key={campaign.id}
               title={campaign.title}
               target={campaign.target}

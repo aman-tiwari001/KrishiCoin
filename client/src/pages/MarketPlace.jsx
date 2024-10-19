@@ -39,9 +39,9 @@ function MarketPlace() {
       <div className="flex h-screen-minus-80 overflow-y-auto flex-wrap gap-8 justify-center p-8">
         {
           products.length > 0 ? (
-            products.map((product) => (
+            products.map((product,index) => (
               <P2PCard
-                key={product.id}
+                key={index}
                 id={product._id}
                 title={product.title}
                 city={product.city}

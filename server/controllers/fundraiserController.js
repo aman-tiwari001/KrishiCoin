@@ -39,6 +39,8 @@ exports.donateToFundraiser = async (req, res) => {
     const user = await User.findById(req.user._id);
 
     fundraiser.donators.push({ user: user._id, amount_donated: amount });
+    fundraiser.amt_collected += amount;
+
     await fundraiser.save();
 
     user.my_donations.push({ fundraiser: fundraiser._id, amount });
@@ -46,6 +48,7 @@ exports.donateToFundraiser = async (req, res) => {
 
     res.json(fundraiser);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: 'Server error', error });
   }
 };
@@ -57,13 +60,14 @@ exports.getFundraiser = async (req, res) => {
   try {
     const fundraiser = await Fundraiser.findById(req.params.id)
       .populate('donators.user', 'name wallet_address')
-      .exec();
+      .populate('owner', 'name wallet_address')
 
     if (!fundraiser)
       return res.status(404).json({ message: 'Fundraiser not found' });
 
     res.json(fundraiser);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: 'Server error', error });
   }
 };
@@ -75,16 +79,12 @@ exports.getFundraisers = async (req, res) => {
       .populate('owner', 'name wallet_address')
       .exec();
     const formattedFundraisers = fundraisers.map(fundraiser => {
-      const totalFunded = fundraiser.donators.reduce((total, donator) => {
-        return total + donator.amount_donated;
-      }, 0);
-
       return {
         id: fundraiser._id,
         title: fundraiser.title,
         target: fundraiser.target_funds,
         deadline: fundraiser.deadline,
-        amtFunded: totalFunded,
+        amtFunded: fundraiser.amt_collected,
         image: fundraiser.images[0],
         owner: fundraiser.owner
       };
