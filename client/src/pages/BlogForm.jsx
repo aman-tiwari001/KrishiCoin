@@ -65,7 +65,7 @@ const BlogForm = () => {
     try {
       await createBlog(payload);
       toast.success("Blog created successfully");
-      navigate("/blogs");
+      navigate("/blog");
     } catch (error) {
       console.error("Error creating blog:", error);
       toast.error("Error creating blog");

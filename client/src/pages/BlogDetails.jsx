@@ -25,7 +25,6 @@ const BlogDetails = () => {
 
         setUpvotes(response.upvotes.length);
         setDownvotes(response.downvotes.length);
-        console.log("testign", response.upvotes.includes(userId));
         setIsUpvoted(response.upvotes.some((user) => user._id === userId));
         setIsDownvoted(response.downvotes.some((user) => user._id === userId));
       } catch (error) {
@@ -46,7 +45,6 @@ const BlogDetails = () => {
 
       setUpvotes(response.upvotes.length);
       setDownvotes(response.downvotes.length);
-      console.log("testign", response.upvotes.includes(userId));
       setIsUpvoted(response.upvotes.some((user) => user._id === userId));
       setIsDownvoted(response.downvotes.some((user) => user._id === userId));
     } catch (error) {
@@ -110,9 +108,6 @@ const BlogDetails = () => {
       </div>
     );
   }
-
-  console.log("user upvoted?", isUpvoted);
-
   return (
     <div className="">
       <div className="h-[80px] flex"></div>

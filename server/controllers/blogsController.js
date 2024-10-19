@@ -1,20 +1,29 @@
 const Blog = require('../models/blogs');
+const User = require('../models/user');
 
 exports.createBlog = async (req, res) => {
   try {
-    const {title , content , image} = req.body;
-    const blog = new Blog({title , content , image, writer: req.user._id});
+    const { title, content, image } = req.body;
+    if (!content){
+      content = 'No content provided';
+    }
+    const blog = new Blog({ title, content, image, writer: req.user._id });
+    const user = await User.findById(req.user._id);
+    user.my_blogs.push(blog._id);
+    await user.save();
     await blog.save();
     res.json(blog);
   } catch (error) {
-    console.error(error);
+    console.error(error.message);
     res.status(500).json({ message: 'Server error', error });
   }
 };
 
 exports.getBlogs = async (req, res) => {
   try {
-    const blogs = await Blog.find().populate('writer','name').sort({ createdAt: -1 });
+    const blogs = await Blog.find()
+      .populate('writer', 'name')
+      .sort({ createdAt: -1 });
     res.json(blogs);
   } catch (error) {
     console.error(error);
@@ -24,7 +33,10 @@ exports.getBlogs = async (req, res) => {
 
 exports.getBlog = async (req, res) => {
   try {
-    const blog = await Blog.findById(req.params.id).populate('writer','name').populate('upvotes','name').populate('downvotes','name');
+    const blog = await Blog.findById(req.params.id)
+      .populate('writer', 'name')
+      .populate('upvotes', 'name')
+      .populate('downvotes', 'name');
     res.json(blog);
   } catch (error) {
     console.error(error);

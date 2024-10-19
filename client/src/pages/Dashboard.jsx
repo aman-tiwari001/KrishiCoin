@@ -7,6 +7,7 @@ import Listings from "../components/dashboard/MyListings";
 import Orders from "../components/dashboard/MyOrders";
 import FundRaisers from "../components/dashboard/MyFundRaisers";
 import Donations from "../components/dashboard/MyDonations";
+import Blogs from "../components/dashboard/MyBlogs";
 
 function DashBoard() {
   const [activeTab, setActiveTab] = useState("My Donations");
@@ -17,7 +18,7 @@ function DashBoard() {
   const [myListings, setMyListings] = useState([]);
   const [myOrders, setMyOrders] = useState([]);
   const [myFundraisers, setMyFundraisers] = useState([]);
-
+  const [myBlogs, setMyBlogs] = useState([]);
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
@@ -37,6 +38,7 @@ function DashBoard() {
       setMyListings(response.my_listings);
       setMyOrders(response.my_order);
       setMyFundraisers(response.my_fundraisers);
+      setMyBlogs(response.my_blogs);
     } catch (error) {
       console.error("Error fetching user:", error);
     } finally {
@@ -220,6 +222,31 @@ function DashBoard() {
                 )}
               </div>
             )}
+
+
+            {
+              activeTab === "My Blogs" && (
+                <div className="flex flex-col gap-2">
+                  {myBlogs.length > 0 ? (
+                    myBlogs.map((blog, index) => (
+                      <Link to={`/blog/${blog._id}`} key={index}>
+                        <Blogs
+                          src={blog.image}
+                          title={blog.title}
+                          created_at={blog.createdAt}
+                          upvotes={blog.upvotes.length}
+                          downvotes={blog.downvotes.length}
+                        />
+                      </Link>
+                    ))
+                  ) : (
+                    <p className="text-white w-full h-[200px] bg-green-700 rounded-md mx-auto flex justify-center items-center text-[19px]">
+                      No blogs found
+                    </p>
+                  )}
+                </div>
+              )
+            }
           </div>
         </div>
       )}
