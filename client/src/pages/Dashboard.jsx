@@ -69,7 +69,7 @@ function DashBoard() {
           </h1>
           <div className="flex space-x-4">
             <button
-              className={`py-2 px-4 ${
+              className={`py-2 px-4 font-bold ${
                 activeTab === "My Donations"
                   ? "bg-[#00b268] text-white rounded-[6px]"
                   : "bg-[#9c9c9c] text-white rounded-[6px]"
@@ -79,7 +79,7 @@ function DashBoard() {
               My Donations
             </button>
             <button
-              className={`py-2 px-4 ${
+              className={`py-2 px-4 font-bold ${
                 activeTab === "My Listings"
                   ? "bg-[#00b268] text-white rounded-[6px]"
                   : "bg-[#9c9c9c] text-white rounded-[6px]"
@@ -89,7 +89,7 @@ function DashBoard() {
               My Listings
             </button>
             <button
-              className={`py-2 px-4 ${
+              className={`py-2 px-4 font-bold ${
                 activeTab === "My Orders"
                   ? "bg-[#00b268] text-white rounded-[6px]"
                   : "bg-[#9c9c9c] text-white rounded-[6px]"
@@ -99,7 +99,7 @@ function DashBoard() {
               My Orders
             </button>
             <button
-              className={`py-2 px-4 ${
+              className={`py-2 px-4 font-bold ${
                 activeTab === "My Fundraisers"
                   ? "bg-[#00b268] text-white rounded-[6px]"
                   : "bg-[#9c9c9c] text-white rounded-[6px]"
@@ -107,6 +107,17 @@ function DashBoard() {
               onClick={() => handleTabClick("My Fundraisers")}
             >
               My Fundraisers
+            </button>
+            <button
+               className={`py-2 px-4 font-bold ${
+                activeTab === "My Blogs"
+                  ? "bg-[#00b268] text-white rounded-[6px]"
+                  : "bg-[#9c9c9c] text-white rounded-[6px]"
+              }`}
+              onClick={() => handleTabClick("My Blogs")}
+              
+            >
+              My Blogs
             </button>
           </div>
           <div className="mt-4 mb-4">

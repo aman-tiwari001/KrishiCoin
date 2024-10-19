@@ -14,7 +14,8 @@ const UserSchema = new mongoose.Schema({
   ],
   my_fundraisers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Fundraiser' }],
   my_listings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Listing' }],
-  my_order: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Order' }]
+  my_order: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Order' }],
+  my_blogs : [{ type: mongoose.Schema.Types.ObjectId, ref: 'Blog' }]
 });
 
 const User = mongoose.model('User', UserSchema);
