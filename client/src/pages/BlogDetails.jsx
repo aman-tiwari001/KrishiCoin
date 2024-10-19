@@ -113,7 +113,7 @@ const BlogDetails = () => {
       <div className="h-[80px] flex"></div>
       <div className="max-w-2xl mx-auto p-6 mt-4 bg-white shadow-md rounded-md">
         <h1 className="text-3xl font-bold mb-4">{blogData.title}</h1>
-        <div className="h-[30%] w-[20%] my-2 flex items-center p-2 border-[1px] border-[#e0fce7] rounded-[20px] bg-[#0a260e]">
+        <div className="h-[30%] w-[20%] my-2 flex items-center p-2 border-[1px] border-[#e0fce7] text-white rounded-[20px] bg-[#0a260e]">
           <div
             className={`flex w-[50%] justify-center border-e-[1px] cursor-pointer ${
               isUpvoted ? "text-green-500" : ""
