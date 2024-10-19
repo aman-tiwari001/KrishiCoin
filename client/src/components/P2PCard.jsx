@@ -89,7 +89,7 @@ function QuantityCircle({ quantity, quantityLeft }) {
       </svg>
 
       <div className="absolute inset-0 flex items-center justify-center text-sm font-semibold">
-      {quantityLeft.toFixed(0)}
+      {quantityLeft.toFixed(0) } %
       </div>
     </div>
   );
