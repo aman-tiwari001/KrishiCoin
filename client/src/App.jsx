@@ -40,7 +40,7 @@ function App() {
           <Route path="/campaign/:id" element={<CrowdFundDetails />} />
           <Route path="/market" element={<MarketPlace />} />
           <Route path="/blog" element={<BlogPage />} />
-          <Route path="/blogdetails" element={<BlogDetails />} />
+          <Route path="/blog/:id" element={<BlogDetails />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </main>
