@@ -2,8 +2,8 @@ const Blog = require('../models/blogs');
 
 exports.createBlog = async (req, res) => {
   try {
-    const blog = new Blog(req.body);
-    blog.writer = req.user._id;
+    const {title , content , image} = req.body;
+    const blog = new Blog({title , content , image, writer: req.user._id});
     await blog.save();
     res.json(blog);
   } catch (error) {
@@ -14,7 +14,7 @@ exports.createBlog = async (req, res) => {
 
 exports.getBlogs = async (req, res) => {
   try {
-    const blogs = await Blog.find().populate({'writer': 'name'}).sort({ createdAt: -1 });
+    const blogs = await Blog.find().populate('writer','name').sort({ createdAt: -1 });
     res.json(blogs);
   } catch (error) {
     console.error(error);
@@ -24,7 +24,7 @@ exports.getBlogs = async (req, res) => {
 
 exports.getBlog = async (req, res) => {
   try {
-    const blog = await Blog.findById(req.params.id).populate({'writer': 'name'});
+    const blog = await Blog.findById(req.params.id).populate('writer','name').populate('upvotes','name').populate('downvotes','name');
     res.json(blog);
   } catch (error) {
     console.error(error);

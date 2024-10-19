@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BlogCard from "../components/BlogCard";
+import CustomLoader from "../components/CustomLoader";
+import { getBlogs } from "../apis/blog";
 
 const products = [
   {
@@ -91,6 +93,37 @@ const products = [
 ];
 
 function BlogPage() {
+
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const response = await getBlogs();
+        setBlogs(response);
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  } , []);
+  if (loading) {
+    return (
+      <div className="absolute inset-0 flex items-center justify-center text-black">
+        <div className="flex items-center gap-4">
+          <CustomLoader /> Fetching blogs...
+        </div>
+      </div>
+    );
+  }
+
+  
+
+
   return (
     <div className="h-screen">
       <div className="h-[80px]"></div>
