@@ -19,7 +19,11 @@ const Navbar = () => {
 		{
 			name: "Dashboard",
 			link: "/dashboard",
-		}
+		},
+		{
+			name: "Blog",
+			link: "/blog",
+		},
 	];
   return (
     <div className="bg-[#E0FCE7] bg-cover w-full h-[80px] z-20 fixed top-0 flex items-center justify-between py-2 px-6 shadow-md">

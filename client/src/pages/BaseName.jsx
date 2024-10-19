@@ -15,6 +15,7 @@ const BaseName = () => {
 		try {
 			const res = await checkUser(address);
 			localStorage.setItem('token', res.token);
+			localStorage.setItem('userId', res.user._id);
 			if (res.exist) {
 				navigate('/home');
 			} else {

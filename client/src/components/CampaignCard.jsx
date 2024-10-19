@@ -44,7 +44,7 @@ function CampaignCard({
           <h3 className="text-sm">{percfunded.toFixed(0)}% Funded</h3>
 
           <Link to={`/campaign/${id}`}>
-            <button className="btn bg-[#778457] border-0 text-white text-sm py-1 px-3 rounded-md">
+            <button className="btn btn-success bg-[#778457] border-0 text-white text-sm py-1 px-3 rounded-md">
               Contribute Now
             </button>
           </Link>

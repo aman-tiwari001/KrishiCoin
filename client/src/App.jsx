@@ -13,6 +13,9 @@ import CrowdFundDetails from "./pages/CrowdFundDetails";
 import MarketPlace from "./pages/MarketPlace";
 import ListingDetails from "./pages/ListingDetails";
 import Dashboard from "./pages/Dashboard";
+import BlogPage from "./pages/BlogPage";
+import BlogForm from "./pages/BlogForm";
+import BlogDetails from "./pages/BlogDetails";
 
 function App() {
   const location = useLocation();
@@ -30,11 +33,14 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/get-basename" element={<BaseName />} />
           <Route path="/sell" element={<SellPage />} />
+          <Route path="/blogform" element={<BlogForm />} />
           <Route path="/listing/:id" element={<ListingDetails />} />
           <Route path="/campaignform" element={<CampaignForm />} />
           <Route path="/donate" element={<Donation />} />
           <Route path="/campaign/:id" element={<CrowdFundDetails />} />
           <Route path="/market" element={<MarketPlace />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:id" element={<BlogDetails />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </main>

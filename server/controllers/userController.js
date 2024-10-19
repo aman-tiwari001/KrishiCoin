@@ -82,6 +82,7 @@ exports.getUser = async (req, res) => {
           }
         ]
       })
+      .populate('my_blogs')
       .lean();
 
     user.my_fundraisers = user.my_fundraisers.map(fundraiser => {
@@ -92,7 +93,7 @@ exports.getUser = async (req, res) => {
 
     res.json(user);
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
     res.status(500).json({ message: 'Server error', error });
   }
 };

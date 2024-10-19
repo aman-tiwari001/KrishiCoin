@@ -28,6 +28,7 @@ const AuthPage = () => {
 		try {
 			const res = await registerUser(data);
 			localStorage.setItem('token', res.token);
+			localStorage.setItem('userId', res.user._id);
       navigate('/home');
       toast.success('User registered');
 		} catch (error) {

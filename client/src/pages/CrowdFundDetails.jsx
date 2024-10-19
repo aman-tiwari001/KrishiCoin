@@ -46,8 +46,6 @@ const CrowdFundDetails = () => {
   const getFundraiserDetail = async () => {
     try {
       const response = await getFundraiser(id);
-      console.log("response", response);
-      console.log("response", response.donators?.length);
       setFundraiser(response);
     } catch (error) {
       console.error("Error fetching fundraiser:", error);
