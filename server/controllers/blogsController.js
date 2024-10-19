@@ -31,3 +31,43 @@ exports.getBlog = async (req, res) => {
     res.status(500).json({ message: 'Server error', error });
   }
 };
+
+exports.upvoteBlog = async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.id);
+    const user = req.user._id;
+
+    if (blog.upvotes.includes(user)) {
+      blog.upvotes.pull(user);
+    } else {
+      blog.upvotes.push(user);
+      blog.downvotes.pull(user);
+    }
+
+    await blog.save();
+    res.json(blog);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: 'Server error', error });
+  }
+};
+
+exports.downvoteBlog = async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.id);
+    const user = req.user._id;
+
+    if (blog.downvotes.includes(user)) {
+      blog.downvotes.pull(user);
+    } else {
+      blog.downvotes.push(user);
+      blog.upvotes.pull(user);
+    }
+
+    await blog.save();
+    res.json(blog);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error', error });
+  }
+};
