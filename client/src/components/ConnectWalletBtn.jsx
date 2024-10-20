@@ -1,8 +1,7 @@
 import { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { CoinbaseWalletSDK } from '@coinbase/wallet-sdk';
-import { CoinbaseWalletLogo } from './CoinbaseWalletLogo';
-
+import { CoinbaseWalletLogo } from './CoinBaseWalletLogo.jsx';
 const buttonStyles = {
 	background: 'transparent',
 	border: '1px solid transparent',
