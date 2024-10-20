@@ -209,23 +209,6 @@ const ListingDetails = () => {
 				</div>
 
 				<button
-					onClick={makeOrder}
-					className={`btn mt-6 text-[#e0fce7] bg-green-500 hover:bg-green-600 ${
-						error ? 'disabled cursor-not-allowed opacity-50' : ''
-					}`}
-				>
-					<p>
-						{submitting ? (
-							<CustomLoader size={20} />
-						) : (
-							'Create Order & Make Payment'
-						)}
-					</p>
-				</button>
-			</div>
-		</div>
-	);
-          <button
             onClick={makeOrder}
             className={`btn mt-6 text-[#e0fce7] bg-[#233b2b] ${
               error ? "disabled cursor-not-allowed opacity-50" : ""
@@ -280,7 +263,7 @@ const ListingDetails = () => {
         </div>)
       }
     </div>
-  );
+	);
 };
 
 export default ListingDetails;
