@@ -69,7 +69,7 @@ const LandingPage = () => {
         />
       </div>
       <div className=" z-20 absolute top-0 bg-gradient-to-r from-[#3b622c] to-[#101264] opacity-[0.6] h-screen w-screen flex items-center justify-center"></div>
-      <div className="absolute top-0 h-[80px] z-50 w-full border-b-[1px] border-white flex items-center p-4 justify-between ">
+      <div className="absolute top-0 h-[80px] z-50 w-full  flex items-center p-4 justify-between ">
         <div className="flex p-4 items-center space-x-2 ">
           <img src="/krishi-coin-logo.png" alt="Logo" className="h-12" />
           <span className="text-[#3ed83e] text-[32px] font-bold max-md:hidden">
@@ -377,7 +377,11 @@ const LandingPage = () => {
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.2 }}
           >
-            Join KrishiCoin Now
+            
+			<ConnectWalletBtn
+            handleSuccess={walletSuccessHandler}
+            handleError={walletErrorHandler}
+          >Join KrishiCoin Now</ConnectWalletBtn>
           </motion.button>
         </div>
       </section>
