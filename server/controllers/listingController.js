@@ -37,12 +37,15 @@ exports.createListing = async (req, res) => {
 exports.getListing = async (req, res) => {
   try {
     const listing = await Listing.findById(req.params.id)
-      .populate('owner')
+      .populate('owner', 'name wallet_address')
+      .populate({path: 'orders', model: 'Order', populate: {path: 'buyer', model: 'User', select: 'name wallet_address'}})
       .exec();
 
     if (!listing) return res.status(404).json({ message: 'Listing not found' });
 
-    res.json(listing);
+    const isUserOwner = listing.owner._id.toString() === req.user._id;
+    res.json({...listing._doc, isUserOwner});
+
   } catch (error) {
     res.status(500).json({ message: 'Server error', error });
   }

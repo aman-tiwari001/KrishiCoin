@@ -28,18 +28,18 @@ function P2PCard({ id, title, image, price, user, quantityLeft, quantity }) {
           </div>
 
           <div className="flex items-center">
-            {/* <div
+            <div
               className="radial-progress text-[#43d854] w-[50px] h-[50px] font-bold"
               style={{
                 "--value": `${Math.floor(quantityLeft)}`,
-                "--size": "12rem",
+                "--size": "50px",
                 "--thickness": "4px",
               }}
               role="progressbar"
             >
               {quantityLeft.toFixed(0)}
-            </div> */}
-            <QuantityCircle quantity={quantity} quantityLeft={quantityLeft} />
+            </div>
+            {/* <QuantityCircle quantity={quantity} quantityLeft={quantityLeft} /> */}
             <span className="ml-2">Left</span>
           </div>
         </div>

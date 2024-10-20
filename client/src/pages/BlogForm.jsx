@@ -44,21 +44,21 @@ const BlogForm = () => {
   };
   
 
-  const handleEditorChange = useCallback(
-    debounce((content) => {
-      setBlogData((prev) => ({ ...prev, body: content }));
-    }, 300),
-    []
-  );
+  // const handleEditorChange = useCallback(
+  //   debounce((content) => {
+  //     setBlogData((prev) => ({ ...prev, body: content }));
+  //   }, 300),
+  //   []
+  // );
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const content = editor.current.value;
     const payload = {
       title: blogData.title,
-      content: blogData.body,
+      content,
       image: blogData.coverImage,
     };
 
@@ -121,8 +121,9 @@ const BlogForm = () => {
               </label>
               <JoditEditor
                 ref={editor}
-                value={blogData.body}
-                onChange={handleEditorChange}
+                onChange={(newContent) => {
+                  editor.current.value = newContent;
+                }}
                 config={{
                   readonly: false,
                   placeholder: "Start typing your blog...",

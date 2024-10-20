@@ -145,7 +145,7 @@ const BlogDetails = () => {
           />
         </div>
 
-        <div className="prose lg:prose-xl max-w-none">
+        <div className="prose lg:prose-xl max-w-none text-black">
           {parse(blogData.content)}
         </div>
       </div>
