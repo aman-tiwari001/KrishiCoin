@@ -11,4 +11,7 @@ router.post('/confirm', verifyToken, orderController.confirmDelivery);
 
 // get order
 router.get('/:id', verifyToken, orderController.getOrder);
+
+// get all orders
+router.get('/get/all', verifyToken, orderController.getAllOrders);
 module.exports = router;

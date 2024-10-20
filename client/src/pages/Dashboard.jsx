@@ -1,27 +1,3 @@
-<<<<<<< HEAD
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import toast from 'react-hot-toast';
-import { getUser } from '../apis/auth';
-import CustomLoader from '../components/CustomLoader';
-import Listings from '../components/dashboard/MyListings';
-import Orders from '../components/dashboard/MyOrders';
-import FundRaisers from '../components/dashboard/MyFundRaisers';
-import Donations from '../components/dashboard/MyDonations';
-
-function DashBoard() {
-	const [activeTab, setActiveTab] = useState('My Donations');
-	const [user, setUser] = useState([]);
-	const [loading, setLoading] = useState(true);
-	const [myDonations, setMyDonations] = useState([]);
-	const [myListings, setMyListings] = useState([]);
-	const [myOrders, setMyOrders] = useState([]);
-	const [myFundraisers, setMyFundraisers] = useState([]);
-
-	const handleTabClick = (tab) => {
-		setActiveTab(tab);
-	};
-=======
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -46,31 +22,11 @@ function DashBoard() {
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
->>>>>>> bf67da9edc71883b0570af33920b17df7db267b8
 
 	const fetchUser = async () => {
 		try {
 			const response = await getUser();
 
-<<<<<<< HEAD
-			setUser(response);
-			// dont remove : for dev purpose
-			// console.log("user : ", response);
-			// console.log("my donations : ", response.my_donations);
-			// console.log("my listings : ", response.my_listings);
-			// console.log("my orders : ", response.my_order);
-			// console.log("my fundraisers : ", response.my_fundraisers);
-			setMyDonations(response.my_donations);
-			setMyListings(response.my_listings);
-			setMyOrders(response.my_order);
-			setMyFundraisers(response.my_fundraisers);
-		} catch (error) {
-			console.error('Error fetching user:', error);
-		} finally {
-			setLoading(false);
-		}
-	};
-=======
       setUser(response);
       // dont remove : for dev purpose
       // console.log("user : ", response);
@@ -89,7 +45,6 @@ function DashBoard() {
       setLoading(false);
     }
   };
->>>>>>> bf67da9edc71883b0570af33920b17df7db267b8
 
 	useEffect(() => {
 		fetchUser();
@@ -243,44 +198,6 @@ function DashBoard() {
 							</div>
 						)}
 
-<<<<<<< HEAD
-						{activeTab === 'My Fundraisers' && (
-							<div className='flex flex-col gap-2'>
-								{myFundraisers.length > 0 ? (
-									myFundraisers.map((fundraiser, index) => (
-										<div key={fundraiser._id}>
-											{/* <Link to={`/campaign/${fundraiser._id}`} key={index}> */}
-											<FundRaisers
-												src={fundraiser.images[0]}
-												title={fundraiser.title}
-												deadline={fundraiser.deadline}
-												price={fundraiser.price}
-												funded={
-													(fundraiser.amt_collected / fundraiser.target_funds) *
-													100
-												}
-												donators_cnt={fundraiser.donatorsCount}
-												donatorsList={fundraiser.donators}
-												amt_collected={fundraiser.amt_collected}
-												projectId={fundraiser.projectId}
-												id={fundraiser._id}
-											/>
-											{/* </Link> */}
-										</div>
-									))
-								) : (
-									<p className='text-white w-full h-[200px] bg-green-700 rounded-md mx-auto flex justify-center items-center text-[19px]'>
-										No fundraisers found
-									</p>
-								)}
-							</div>
-						)}
-					</div>
-				</div>
-			)}
-		</div>
-	);
-=======
             {activeTab === "My Fundraisers" && (
               <div className="flex flex-col gap-2">
                 {myFundraisers.length > 0 ? (
@@ -337,7 +254,6 @@ function DashBoard() {
       )}
     </div>
   );
->>>>>>> bf67da9edc71883b0570af33920b17df7db267b8
 }
 
 export default DashBoard;

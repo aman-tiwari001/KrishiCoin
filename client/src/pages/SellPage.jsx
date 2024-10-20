@@ -57,19 +57,16 @@ const SellPage = () => {
 	const handleListProducesOnChain = async (data) => {
 		await fetchExRate();
 		// USD to Wei conversion
-		const pricePerQuintal = ethers.utils.parseUnits(
-			data._pricePerQuintal.toString(),
-			6
-		);
-		const exchangeRateBig = ethers.utils.parseUnits(
-			exchangeRate.toString(),
-			18
-		);
-		const totalPriceInWei = pricePerQuintal
-			.mul(exchangeRateBig)
-			.div(ethers.BigNumber.from(10).pow(6));
 
-		console.log('Total price in wei:', totalPriceInWei.toString());
+		const totalPriceInETH =
+			parseFloat(data._pricePerQuintal) * parseFloat(exchangeRate);
+		console.log('Total price in eth:', totalPriceInETH);
+		const totalPriceInWei = ethers.utils.parseEther(totalPriceInETH.toString());
+		console.log(
+			'Total price in wei:',
+			totalPriceInWei,
+			totalPriceInWei.toString()
+		);
 		const tx = await p2pContract.listItem(
 			data._title,
 			totalPriceInWei, // in wei,

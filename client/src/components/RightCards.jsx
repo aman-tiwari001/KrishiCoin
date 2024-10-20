@@ -69,9 +69,11 @@ function RightCards() {
 							grow together. Explore the interesting blogs, articles and posts
 							in your community.
 						</p>
-						<button className='bg-black text-white font-bold py-1 mt-[-9px] px-6 rounded-full shadow transition duration-300 hover:bg-gray-700'>
-							Explore
-						</button>
+						<Link to={'/blog'}>
+							<button className='bg-black text-white font-bold py-1 mt-[-9px] px-6 rounded-full shadow transition duration-300 hover:bg-gray-700'>
+								Explore
+							</button>
+						</Link>
 					</div>
 				</div>
 			</div>
