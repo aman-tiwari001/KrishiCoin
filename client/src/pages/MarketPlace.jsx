@@ -38,7 +38,7 @@ function MarketPlace() {
     product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
   return (
-    <div className="h-screen">
+    <div className="">
       <div className="h-[80px]"></div>
       <h1 className='text-3xl mt-5 text-theme text-center'>P2P Marketplace</h1>
       <h1 className='text-gray-500 text-center'>(For farmer produces and crops)</h1>

@@ -181,47 +181,49 @@ const ListingDetails = () => {
         </div>
       </div>
       
-      <div className="flex flex-col mt-8 bg-[#e8f5e9] rounded-lg mb-8 shadow-xl w-[90%] mx-auto p-4">
-        <h2 className="text-xl font-semibold text-[#283e2f] mb-4">Buyers</h2>
-        <div className="overflow-y-auto h-48">
-          {product.orders && product.orders.length > 0 ? (
-            <table className="table-auto w-full text-left text-[#283e2f] rounded-md">
-              <thead>
-                <tr className="bg-[#74d677]">
-                  <th className="px-4 py-2">No.</th>
-                  <th className="px-4 py-2">Buyer</th>
-                  <th className="px-4 py-2">Amount (USD)</th>
-                  <th className="px-4 py-2">Quantity</th>
-                  <th className="px-4 py-2">Date</th>
-                  <th className="px-4 py-2">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {product.orders?.map((product, index) => (
-                  <tr key={index} className="bg-[#c8e6c9]">
-                    <td className="border px-4 py-2">{index + 1}</td>
-                    <td className="border px-4 py-2">{product.buyer.name}</td>
-                    <td className="border px-4 py-2">${product.price}</td>
-                    <td className="border px-4 py-2">{product.quantity} qtl</td>
-                    <td className="border px-4 py-2">
-                      {formatDate(product.createdAt)}
-                    </td>
-                    <td className="border px-4 py-2">
-                      <button className="btn btn-success">Ship</button>
-                    </td>
+      {
+        product.isUserOwner && (<div className="flex flex-col mt-8 bg-[#e8f5e9] rounded-lg mb-8 shadow-xl w-[90%] mx-auto p-4">
+          <h2 className="text-xl font-semibold text-[#283e2f] mb-4">Buyers</h2>
+          <div className="overflow-y-auto h-48">
+            {product.orders && product.orders.length > 0 ? (
+              <table className="table-auto w-full text-left text-[#283e2f] rounded-md">
+                <thead>
+                  <tr className="bg-[#74d677]">
+                    <th className="px-4 py-2">No.</th>
+                    <th className="px-4 py-2">Buyer</th>
+                    <th className="px-4 py-2">Amount (USD)</th>
+                    <th className="px-4 py-2">Quantity</th>
+                    <th className="px-4 py-2">Date</th>
+                    <th className="px-4 py-2">Action</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            <div className="bg-[#158319] my-2 rounded-md">
-              <p className="border px-4 py-2 text-white font-semibold text-center">
-                No Buyers yet
-              </p>
-            </div>
-          )}
-        </div>
-      </div>
+                </thead>
+                <tbody>
+                  {product.orders?.map((product, index) => (
+                    <tr key={index} className="bg-[#c8e6c9]">
+                      <td className="border px-4 py-2">{index + 1}</td>
+                      <td className="border px-4 py-2">{product.buyer.name}</td>
+                      <td className="border px-4 py-2">${product.price}</td>
+                      <td className="border px-4 py-2">{product.quantity} qtl</td>
+                      <td className="border px-4 py-2">
+                        {formatDate(product.createdAt)}
+                      </td>
+                      <td className="border px-4 py-2">
+                        <button className="btn btn-success">Ship</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <div className="bg-[#158319] my-2 rounded-md">
+                <p className="border px-4 py-2 text-white font-semibold text-center">
+                  No Buyers yet
+                </p>
+              </div>
+            )}
+          </div>
+        </div>)
+      }
     </div>
   );
 };
