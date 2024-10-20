@@ -12,8 +12,6 @@ exports.createOrder = async (req, res) => {
     const listing = await Listing.findById(listing_id);
     if (!listing) return res.status(404).json({ message: 'Listing not found' });
     listing.sold_stock += quantity;
-    listing.orders.push({ order: req.user._id });
-    await listing.save();
     const user = await User.findById(req.user._id);
     const order = new Order({
       listing: listing_id,
@@ -23,12 +21,16 @@ exports.createOrder = async (req, res) => {
       seller: listing.owner
     });
 
+    await order.save();
+    
+    listing.orders.push(order._id);
+    await listing.save();
     user.my_order.push(order._id);
     await user.save();
-    await order.save();
 
     res.json(order);
   } catch (error) {
+    console.log(error.message)
     res.status(500).json({ message: 'Server error', error });
   }
 };
