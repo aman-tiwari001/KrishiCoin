@@ -381,7 +381,7 @@ const LandingPage = () => {
 			<ConnectWalletBtn
             handleSuccess={walletSuccessHandler}
             handleError={walletErrorHandler}
-          >Join KrishiCoin Now</ConnectWalletBtn>
+          />
           </motion.button>
         </div>
       </section>
