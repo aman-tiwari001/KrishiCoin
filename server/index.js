@@ -29,5 +29,5 @@ app.use('/api/listings', listingRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/blogs', blogRoutes);
 app.listen(PORT, () => {
-  console.log(`🚀 Server is live on http://localhost:${PORT}`);
+  console.log(`🚀 Server is live on ${PORT}`);
 });
