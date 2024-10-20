@@ -1,6 +1,7 @@
-# KrishiCoin 🥮👨‍🌾
-
-![KrishiCoin Logo](client/public/krishi-coin-logo.png)
+<div align="center" style="display: flex; flex-direction: row; align-items: center;">
+    <img src="client/public/krishi-coin-logo.png" alt="" width="100px" height="100px">
+    <h1 align="center" id="title" style="font-size: calc(100px / 2.5);">KrishiCoin</h1>
+</div>
 
 **KrishiCoin** is a web3-based microfinance dApp built on the Base blockchain (Ethereum Layer 2) for farmers, small businesses, and people in rural areas. 
 
