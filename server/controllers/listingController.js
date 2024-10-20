@@ -43,7 +43,9 @@ exports.getListing = async (req, res) => {
 
     if (!listing) return res.status(404).json({ message: 'Listing not found' });
 
-    res.json(listing);
+    const isUserOwner = listing.owner._id.toString() === req.user._id;
+    res.json({...listing._doc, isUserOwner});
+
   } catch (error) {
     res.status(500).json({ message: 'Server error', error });
   }
