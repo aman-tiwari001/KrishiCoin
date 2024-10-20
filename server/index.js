@@ -12,7 +12,12 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 4000;
-app.use(cors());
+app.use(cors(
+  {
+    origin: 'https://krishicoin.vercel.app',
+    credentials: true,
+  }
+));
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 connectDB();
