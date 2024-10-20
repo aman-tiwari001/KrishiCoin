@@ -1,28 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaRegThumbsUp } from "react-icons/fa";
-import { FaRegThumbsDown } from "react-icons/fa";
+import { FaRegThumbsUp, FaRegThumbsDown } from "react-icons/fa";
 import { downvoteBlog, upvoteBlog } from "../apis/blog";
 import toast from "react-hot-toast";
 
-function BlogCard({
-  id,
-  title,
-  image,
-  description,
-  user,
-  upvotes_arr,
-  downvotes_arr,
-}) {
+function BlogCard({ id, title, image, user, upvotes_arr, downvotes_arr }) {
   const [isUpvoted, setIsUpvoted] = useState(false);
   const [isDownvoted, setIsDownvoted] = useState(false);
   const [upvotes, setUpvotes] = useState(upvotes_arr.length);
   const [downvotes, setDownvotes] = useState(downvotes_arr.length);
+
   useEffect(() => {
-    if (upvotes_arr.includes(localStorage.getItem("userId"))) {
+    const userId = localStorage.getItem("userId");
+    if (upvotes_arr.includes(userId)) {
       setIsUpvoted(true);
     }
-    if (downvotes_arr.includes(localStorage.getItem("userId"))) {
+    if (downvotes_arr.includes(userId)) {
       setIsDownvoted(true);
     }
   }, [upvotes_arr, downvotes_arr]);
@@ -40,7 +33,6 @@ function BlogCard({
           setIsDownvoted(false);
           setDownvotes(downvotes > 0 ? downvotes - 1 : 0);
         }
-
         await upvoteBlog(id);
         setIsUpvoted(true);
         setUpvotes(upvotes + 1);
@@ -51,7 +43,7 @@ function BlogCard({
     }
   };
 
-  const handleDownvote = async (e) => {
+  const handleDownvote = async () => {
     try {
       if (isDownvoted) {
         await downvoteBlog(id);
@@ -64,7 +56,6 @@ function BlogCard({
           setIsUpvoted(false);
           setUpvotes(upvotes > 0 ? upvotes - 1 : 0);
         }
-
         await downvoteBlog(id);
         setIsDownvoted(true);
         setDownvotes(downvotes + 1);
@@ -76,59 +67,44 @@ function BlogCard({
   };
 
   return (
-    // <Link to={`/blog/${id}`}>
-    <div className="card h-[200px] p-2 flex flex-row bg-[#283e2f] text-[#e0fce7] w-full shadow-xl rounded-lg overflow-hidden">
+    <div className="card bg-gradient-to-r from-green-300 h-[220px] to-lime-200 text-[#1e5b1e] shadow-lg rounded-lg overflow-hidden flex flex-row  w-1/2 md:w-[30%]">
       <img
         src={image}
         alt={title}
-        className="object-cover w-[25vw] rounded-t-lg h-[100%]"
+        className="object-cover w-[50%] h-[100%] rounded-s-lg"
       />
-
-      <div className="w-[70vw]  px-2 flex flex-col justi h-[100%]">
-        <div className=" overflow-x-auto h-[16%]">
-          <h2 className="max-md:text-lg text-lg font-semibold">{title}</h2>
-        </div>
-        <h5 className="text-xs h-[10%]  border-b-2 pb-3 border-slate-100 text-gray-300">
-          By {user}
-        </h5>
-
-        <div className="flex justify-between w-[100%] h-[73%] items-center mt-2 ">
-          <div className=" h-[90%] w-[80%] overflow-y-auto p-1 ">
-            {/* {truncatedDescription(description)} */}
-          </div>
-          <div className=" h-[30%] w-[20%] flex items-center p-2 border-[1px] border-[#e0fce7] rounded-[20px] bg-[#0a260e]">
+      <div className="flex flex-col ms-3  justify-start w-[50%] p-2">
+        <h2 className="text-lg font-bold truncate">{title}</h2>
+        <h5 className="text-sm text-gray-700 mt-1 ">~By {user}</h5>
+        <div className="flex justify-between items-center">
+          <div className="flex items-center border-[1px] border-gray-800 px-4 py-1 rounded-3xl mt-4 space-x-4">
             <div
-              className={`flex w-[50%] justify-center border-e-[1px] cursor-pointer ${
-                isUpvoted ? "text-green-500" : "text-gray-300"
-              } transition-all duration-300`}
+              className={`flex items-center border-e-[2px] pe-3 border-slate-400 cursor-pointer ${
+                isUpvoted ? "text-green-600" : "text-gray-700"
+              }`}
               onClick={handleUpvote}
             >
-              <span className="pt-1 pr-1">
-                <FaRegThumbsUp />
-              </span>
+              <FaRegThumbsUp className="mr-1" />
               <span>{upvotes}</span>
             </div>
             <div
-              className={`flex w-[50%] justify-center cursor-pointer  ${
-                isDownvoted ? "text-red-500" : "text-gray-300"
-              } transition-all duration-300`}
+              className={`flex items-center cursor-pointer ${
+                isDownvoted ? "text-red-400" : "text-gray-700"
+              }`}
               onClick={handleDownvote}
             >
-              <span className="pt-1 pr-1">
-                <FaRegThumbsDown />
-              </span>
+              <FaRegThumbsDown className="mr-1" />
               <span>{downvotes}</span>
             </div>
           </div>
         </div>
         <Link to={`/blog/${id}`}>
-          <button className="btn w-fit btn-success bg-[#778457] border-0 text-white text-sm py-1 px-3 rounded-md">
+          <button className=" btn btn-success text-white py-1 px-3 mt-7 rounded-md transition duration-300">
             Read More
           </button>
         </Link>
       </div>
     </div>
-    // </Link>
   );
 }
 

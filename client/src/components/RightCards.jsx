@@ -58,7 +58,7 @@ function RightCards() {
 						Raise funds from the community for the cause that matters most!
 					</p>
 				</Link>
-				<div className='w-full bg-[#19747E] cards2-bg rounded-2xl  '>
+				<Link to='/blog' className='w-full bg-[#19747E] cards2-bg rounded-2xl  '>
 					<div className='w-[100%] h-[100%] bg-gradient-to-br from-[#20705b] to-[#012513] flex flex-col items-center justify-center shadow-lg opacity-[0.85] px-4 py-6 rounded-2xl  '>
 						<h2 className='text-[#e0fce7] text-2xl font-semibold mb-4 flex items-center gap-2'>
 							Community Writes
@@ -69,11 +69,9 @@ function RightCards() {
 							grow together. Explore the interesting blogs, articles and posts
 							in your community.
 						</p>
-						<button className='bg-black text-white font-bold py-1 mt-[-9px] px-6 rounded-full shadow transition duration-300 hover:bg-gray-700'>
-							Explore
-						</button>
+						
 					</div>
-				</div>
+				</Link>
 			</div>
 		</div>
 	);
