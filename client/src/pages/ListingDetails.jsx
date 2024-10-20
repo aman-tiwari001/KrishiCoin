@@ -1,78 +1,116 @@
-import React, { useState, useEffect } from "react";
-import Carousel from "../components/Carousel";
-import { useNavigate, useParams } from "react-router-dom";
-import { getListing } from "../apis/listing";
-import CustomLoader from "../components/CustomLoader";
-import { createOrder } from "../apis/order";
-import toast from "react-hot-toast";
-import { formatDate } from "date-fns";
+import { useState, useEffect } from 'react';
+import Carousel from '../components/Carousel';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getListing } from '../apis/listing';
+import CustomLoader from '../components/CustomLoader';
+import { createOrder, getTotalOrders } from '../apis/order';
+import toast from 'react-hot-toast';
+import { p2pContract } from '../utils/contract';
+import { ethers } from 'ethers';
+import { getCurrencyExchangeRate } from '../apis/exchange-rate';
 const ListingDetails = () => {
-  const { id } = useParams();
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [quantity, setQuantity] = useState(0);
-  const [total, setTotal] = useState(0);
-  const [error, setError] = useState("");
+	const { id } = useParams();
+	const [product, setProduct] = useState(null);
+	const [loading, setLoading] = useState(true);
+	const [submitting, setIsSubmitting] = useState(false);
+	const [quantity, setQuantity] = useState(null);
+	const [total, setTotal] = useState(null);
+	const [error, setError] = useState('');
 
-  const [submitting, setSubmitting] = useState(false);
+	const navigate = useNavigate();
+	const handleQuantityChange = (e) => {
+		const qty = parseInt(e.target.value, 10);
+		if (qty === 0) {
+			setError('Quantity cannot be 0');
+			setQuantity(0);
+			setTotal(0);
+		} else if (qty > product.total_stock - product.sold_stock) {
+			setError('Quantity cannot be greater than available stock');
+			setQuantity(qty);
+			setTotal(0);
+		} else if (isNaN(qty)) {
+			setQuantity('');
+			setTotal(0);
+		} else {
+			setError('');
+			setQuantity(qty);
+			setTotal(qty * product.price);
+		}
+	};
 
-  const navigate = useNavigate();
-  const handleQuantityChange = (e) => {
-    const qty = parseInt(e.target.value, 10) || 0;
+	const getListingDetail = async () => {
+		try {
+			const response = await getListing(id);
+			setProduct(response);
+		} catch (error) {
+			console.error('Error fetching listing:', error);
+		} finally {
+			setLoading(false);
+		}
+	};
 
-    if (qty === 0) {
-      setError("Quantity cannot be 0");
-      setQuantity(qty);
-      setTotal(0);
-    } else if (qty > product.total_stock - product.sold_stock) {
-      setError("Quantity cannot be greater than available stock");
-      setQuantity(qty);
-      setTotal(0);
-    } else {
-      setError("");
-      setQuantity(qty);
-      setTotal(qty * product.price);
-    }
-  };
+	const [exchangeRate, setExchangeRate] = useState(0);
 
-  const getListingDetail = async () => {
-    try {
-      const response = await getListing(id);
-      setProduct(response);
-    } catch (error) {
-      console.error("Error fetching listing:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+	const fetchExRate = async () => {
+		try {
+			const res = await getCurrencyExchangeRate('USD');
+			setExchangeRate(parseFloat(res.data.rates['ETH']));
+		} catch (error) {
+			console.error('Error fetching exchange rate:', error);
+		}
+	};
 
-  useEffect(() => {
-    getListingDetail();
-  }, []);
+	useEffect(() => {
+		getListingDetail();
+	}, []);
 
-  const makeOrder = async () => {
-    if (quantity === 0) {
-      setError("Quantity cannot be 0");
-      return;
-    } else if (quantity > product.total_stock - product.sold_stock) {
-      setError("Quantity cannot be greater than available stock");
-      return;
-    }
-    const orderData = {
-      listing_id: id,
-      amount: total,
-      quantity,
-    };
+	const makeOrder = async () => {
+		if (quantity === 0) {
+			setError('Quantity cannot be 0');
+			return;
+		} else if (quantity > product.total_stock - product.sold_stock) {
+			setError('Quantity cannot be greater than available stock');
+			return;
+		}
+		if (isNaN(quantity) || quantity === '' || quantity === null) {
+			setError('Quantity cannot be empty');
+			return;
+		}
+		const orderData = {
+			listing_id: id,
+			amount: total,
+			quantity,
+		};
 
-    try {
-      const response = await createOrder(orderData);
-      toast.success("Order placed successfully");
-      navigate("/market");
-    } catch (error) {
-      console.error("Error placing order:", error);
-      toast.error("Error placing order");
-    }
-  };
+		try {
+			setIsSubmitting(true);
+			await fetchExRate();
+			const listingFromContract = await p2pContract.items(product.listingId);
+			const pricePerQuintalInWei =
+				listingFromContract.pricePerQuintal.toString();
+			const amountInEther =
+				parseFloat(pricePerQuintalInWei) * parseInt(quantity);
+			console.log(amountInEther);
+			const res = await getTotalOrders();
+			const orderId = res.totalOrders + 1;
+			await p2pContract.purchaseItem(
+				product.listingId,
+				orderId,
+				parseInt(quantity * 100),
+				{
+					value: ethers.utils.parseEther(amountInEther.toString()),
+				}
+			);
+			await createOrder(orderData);
+			toast.success('Order placed successfully');
+			navigate('/market');
+		} catch (error) {
+			console.error('Error placing order:', error);
+			toast.error('Error placing order');
+		} finally {
+			setIsSubmitting(false);
+		}
+	};
 
   if (loading) {
     return (
@@ -160,17 +198,17 @@ const ListingDetails = () => {
               {error && <h2 className="text-red-500 pl-4 m-2">{error}</h2>}
             </div>
 
-            <div className="flex flex-col w-1/2">
-              <h2 className="text-xl font-semibold pl-2 mt-4 text-[#283e2f] ">
-                Total Amount:
-              </h2>
-              <h2 className="text-lg pl-4 bg-transparent border-2 rounded-xl m-2 text-[#283e2f] ">
-                ₹ {total}
-              </h2>
-            </div>
-          </div>
+					<div className='flex flex-col w-1/2'>
+						<h2 className='text-xl font-semibold pl-2 mt-4 text-[#283e2f] '>
+							Total Amount:
+						</h2>
+						<h2 className='text-lg pl-4 bg-transparent border-2 rounded-xl m-2 text-[#283e2f] '>
+							$ {total}
+						</h2>
+					</div>
+				</div>
 
-          <button
+				<button
             onClick={makeOrder}
             className={`btn mt-6 text-[#e0fce7] bg-[#233b2b] ${
               error ? "disabled cursor-not-allowed opacity-50" : ""
@@ -225,7 +263,7 @@ const ListingDetails = () => {
         </div>)
       }
     </div>
-  );
+	);
 };
 
 export default ListingDetails;

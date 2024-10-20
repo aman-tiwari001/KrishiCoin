@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import BlogCard from "../components/BlogCard";
 import CustomLoader from "../components/CustomLoader";
 import { getBlogs } from "../apis/blog";
@@ -39,7 +39,7 @@ function BlogPage() {
 
   return (
     <div className="mt-[75px] pt-8">
-      <h1 className="text-3xl mt-5 text-theme text-center font-bold">Blogs</h1>
+      <h1 className="text-3xl mt-5 text-theme text-center font-bold">Community Writes 📝</h1>
       <div className="w-full flex_fix_invert items-center justify-center gap-2 mt-[20px] px-4">
         <label className="input input-bordered flex items-center gap-2 w-1/2 max-md:w-full bg-white shadow-lg text-black">
           <input
