@@ -16,10 +16,10 @@ import Dashboard from "./pages/Dashboard";
 import BlogPage from "./pages/BlogPage";
 import BlogForm from "./pages/BlogForm";
 import BlogDetails from "./pages/BlogDetails";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const location = useLocation();
-
   const shouldShowNavbar =
     location.pathname !== "/" && location.pathname !== "/get-basename";
 
@@ -42,6 +42,7 @@ function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:id" element={<BlogDetails />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="*" element={<NotFound/>} /> 
         </Routes>
       </main>
     </>
