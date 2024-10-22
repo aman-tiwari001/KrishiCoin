@@ -1,73 +1,63 @@
-<div align="center" style="display: flex; flex-direction: row; align-items: center;">
-    <img src="client/public/krishi-coin-logo.png" alt="" width="100px" height="100px">
-    <h1 align="center" id="title" style="font-size: calc(100px / 2.5);">KrishiCoin</h1>
+<div align="left">
+    
+![KrishiCoin](https://github.com/user-attachments/assets/c1de3085-9dc1-4179-86c1-de116c41fe44)
+    
+### **📍Built At Based India**
 </div>
 
-**KrishiCoin** is a web3-based microfinance dApp built on the Base blockchain (Ethereum Layer 2) for farmers, small businesses, and people in rural areas. 
+<hr />
 
-## Introduction
+**KrishiCoin** is a peer-to-peer (P2P) and decentralized finance (DeFi) platform built on the **Base Blockchain (Ethereum L2)**. It empowers farmers and rural communities by offering a decentralized marketplace, crowdfunding opportunities, and secure financial solutions, all while addressing key issues in the agriculture sector.
 
-Empower Farmers 💪  
-Directly support farmers by eliminating intermediaries, allowing them to receive fair compensation for their hard work.
+<a href='https://youtu.be/kvNMvvIIpbE?si=JIYzzw-gcnl03F4M'>Demo Video</a> |
+<a href='https://devfolio.co/projects/krishicoin-f265'>Devfolio Submission Link</a> | 
+<a href='https://krishicoin.vercel.app/blog'>Project Link</a> 
 
-## Overview
 
-- 🔄 **Transparent blockchain-based transactions**
-- 🛍️ **Buy directly from farmers**
-- 📈 **Increase farmers' profits with fair trade**
+## 🌟 Key Features
 
-### Crowdfunding Impact 🤝
-Join hands to contribute to meaningful causes by participating in farm-related fundraising campaigns.
+### 🚜 Direct Marketplace (P2P)
+- Eliminate middlemen by directly connecting farmers to companies.
+- Maximize farmers' profits and reduce buyers' costs.
 
-- 💰 Support projects for equipment and crop care
-- 📢 Community-powered fundraisers for emergencies
-- 🚜 Help farmers grow with your small contributions
+### 📈 Crowdfunding for Farmers
+- Farmers can raise funds for social and essential causes through secure and transparent crowdfunding.
+- Direct financial assistance to farmers in need.
 
-### Fair & Direct Marketplace 🛒
-Purchase fresh, high-quality produce directly from farmers, ensuring fair prices for both buyers and sellers.
+### 🔒 Blockchain-Based Transparency
+- Powered by Base Blockchain for scalability and security.
+- Uses **Solidity smart contracts** to ensure trust, transparency, and decentralized operations.
 
-- 🍅 Access seasonal products and organic goods
-- ⚖️ Blockchain ensures price transparency
-- 🚚 Fast delivery with minimal overhead
+### 🌐 Seamless Web3 Integration
+- Built using **Ether.js** for smooth smart contract interaction.
+- Integrated **Coinbase Smart Wallet** for easy onboarding and **OnchainKit** for enhanced user experience.
 
-### Stay Informed with Blogs 📝
-Explore stories, tips, and insights shared by the community to stay up-to-date on agricultural trends.
+### 💼 Features for Rural Communities
+- Peer-to-peer decentralized marketplace for direct transactions.
+- Crowdfunding platform to provide access to financial support.
+- **Community Writes** section for knowledge-sharing and engagement among farmers.
 
-- 📖 Read farmer stories and success journeys
-- 💡 Discover innovative farming techniques
-- 🗣️ Engage with the community through comments
+## 🛠️ Technical Breakdown
 
-### Blockchain-Powered Security 🔐
-Enjoy secure and transparent transactions backed by blockchain technology to protect every interaction.
+- **Blockchain:** Built on **Base Blockchain (Ethereum L2)** for scalability.
+- **Smart Contracts:** Peer-to-peer marketplace and crowdfunding handled via **Solidity smart contracts** deployed on the Base Sepolia Testnet.
+- **React Frontend:** Intuitive UI for managing orders, purchases, crop listings, and donations.
+- **Coinbase Integration:** Utilizes **Coinbase Wallet**, **Smart Wallet**, and **Onramp** for easy fund management and seamless transactions.
+- **Thirdweb:** Used for testing and deploying smart contracts on Base Sepolia Testnet.
 
-- 🔒 Tamper-proof records and transactions
-- ✅ Verify every purchase on the blockchain
-- 🔗 Complete transparency for all stakeholders
+## 📚 Technologies Used
 
-### Community-Driven Growth 🌱
-Be part of a growing community that fosters sustainability, innovation, and agricultural development.
-
-- 🎉 Collaborate with other supporters and experts
-- 🚀 Drive growth through shared knowledge and efforts
-- 🌍 Make a positive impact on rural economies
-
----
-
-## Features
-
-- **Direct Support**: Farmers receive fair compensation without intermediaries.
-- **Crowdfunding Campaigns**: Support farm-related projects and emergencies.
-- **Marketplace**: Access fresh produce and ensure price transparency.
-- **Informative Blogs**: Learn about agricultural trends and techniques.
-- **Blockchain Security**: Enjoy secure transactions with tamper-proof records.
-
-## Technology
-
-- **Blockchain**: Built on Base, an Ethereum Layer 2 solution for scalable transactions.
-- **OnchainKit**: Essential tools for integrating blockchain services seamlessly.
-- **BaseNames**: A decentralized naming service for managing identities easily.
-- **Smart Wallet**: Instant onboarding with secure, ERC-4337 compliant transactions.
-
+- **Blockchain:** Base Blockchain (Ethereum L2)
+- **Smart Contracts:** Solidity
+- **Frontend:** React.js
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB
+- **Web3 Interaction:** Ether.js
+- **Wallet Integration:** Coinbase Smart Wallet
+- **Deployment Tools:** Thirdweb, Vercel
+- **Design & UI:** Daisy UI, Tailwind CSS
+- **Other Tools:** Vite, Onchainkit, Coinbase APIs, etc
+  
 ![React.js](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-68A063?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![Express.js](https://img.shields.io/badge/Express.js-4D4D4D?style=for-the-badge&logo=express&logoColor=white)
@@ -83,15 +73,61 @@ Be part of a growing community that fosters sustainability, innovation, and agri
 ![Web3.js](https://img.shields.io/badge/Web3.js-4B7BE5?style=for-the-badge&logo=web3.js&logoColor=white)
 
 
----
+## 🚀 How to setup KrishiCoin locally ?
 
-## Krishi Coin Flow
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/aman-tiwari001/KrishiCoin.git
+2. **Navigate to the client directory and install dependencies:**
+    ```bash
+    cd client
+    npm install
+    ```
+3. **Create a .env file in the client directory and add the following environment variables:**
+    ```bash
+    VITE_COINBASE_PROJECT_ID="your-coinbase-project-id"
+    VITE_ONCHAINKIT_API_KEY="your-onchainkit-api-key"
+    VITE_APP_SERVER_URL="http://localhost:4000"
+    ```
+4. **Navigate to the server directory and install dependencies:**
 
-1. **User Registration**: Users sign up and create a profile.
-2. **Marketplace Browsing**: Users explore available products directly from farmers.
-3. **Purchase**: Users can buy products with secure transactions.
-4. **Crowdfunding**: Users can contribute to farm-related campaigns.
-5. **Blog Interaction**: Users read blogs and engage with the community.
-6. **Transaction Verification**: All transactions are recorded and verifiable on the blockchain.
+    ```bash
+    cd ../server
+    npm install
+    ```
+5. **Create a .env file in the server directory and add the following environment variables:**
+
+    ```bash 
+    MONGODB_URI="mongodb://127.0.0.1:27017/krishicoin"
+    JWT_SECRET="krishicoin123"
+    ```
+
+6. **Start the server:**
+
+    ```bash
+    npm run dev
+    ```
+6. **Start the client:**
+
+    ```bash
+    cd ../client
+    npm run dev
+    ```
+🎉 Congratulations! You have successfully set up the project locally.
 
 
+## App Screenshots
+![Screenshot 2024-10-20 210057](https://github.com/user-attachments/assets/5b14f8d6-b56d-4522-8aab-266cf01a6af8)
+![Screenshot 2024-10-20 210136](https://github.com/user-attachments/assets/7153513f-b527-4257-8961-5bba3a01acbd)
+![Screenshot 2024-10-20 210250](https://github.com/user-attachments/assets/6bf1dd42-2cf7-4790-9534-c8df817b9b8d)
+![Screenshot 2024-10-20 210524](https://github.com/user-attachments/assets/e23f53e6-c7d2-47a6-8569-05f363a36ec6)
+![Screenshot 2024-10-20 210413](https://github.com/user-attachments/assets/46dd8256-a6e5-4fb7-9800-96015ca812b7)
+![Screenshot 2024-10-20 210425](https://github.com/user-attachments/assets/cccc5eec-5d0f-465c-b6de-c444db22348d)
+![Screenshot 2024-10-20 210319](https://github.com/user-attachments/assets/9926c9db-0c0f-4c87-8a45-3d860947f239)
+![Screenshot 2024-10-20 210342](https://github.com/user-attachments/assets/1411ac94-7d12-4d8d-93db-c2d3c95fed1e)
+![Screenshot 2024-10-20 210616](https://github.com/user-attachments/assets/87b85cce-641e-4166-9199-3f69a1df13ce)
+![Screenshot 2024-10-22 142923](https://github.com/user-attachments/assets/2edf4a3e-7166-4d67-84c8-5252354dbe53)
+![image](https://github.com/user-attachments/assets/a80602e4-a639-4dce-83dd-dd64d9b4f52a)
+
+## Video Demonstration 
+https://youtu.be/kvNMvvIIpbE?si=JIYzzw-gcnl03F4M
