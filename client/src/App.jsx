@@ -41,7 +41,7 @@ function App() {
           <Route path="/market" element={<MarketPlace />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:id" element={<BlogDetails />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} /> 
           <Route path="*" element={<NotFound/>} /> 
         </Routes>
       </main>

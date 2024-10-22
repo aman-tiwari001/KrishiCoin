@@ -187,6 +187,7 @@ function DashBoard() {
 												seller={order.seller.name}
 												price={order.price}
 												status={order.status}
+												orderId={order.orderId}
 											/>
 										</Link>
 									))

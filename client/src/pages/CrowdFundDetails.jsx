@@ -166,7 +166,7 @@ const CrowdFundDetails = () => {
           </div>
           <button
             onClick={donate}
-            className={`btn mt-6 text-[#e0fce7] bg-green-700 ${
+            className={`btn my-6 text-[#e0fce7] bg-green-700 ${
               error ? "disabled cursor-not-allowed opacity-50" : ""
             }`}
           >
@@ -174,8 +174,6 @@ const CrowdFundDetails = () => {
           </button>
         </div>
       </div>
-
-
 
       <div className="flex flex-col mt-8 bg-[#e8f5e9] rounded-lg  mb-8 shadow-xl w-[90%] mx-auto p-4">
         <h2 className="text-xl font-semibold text-[#283e2f] mb-4">

@@ -1,6 +1,5 @@
-import React from "react";
 import { MdOutlineTimer } from "react-icons/md";
-import { differenceInDays, formatDistanceStrict, isPast } from "date-fns"; // Import date-fns
+import { formatDistanceStrict, isPast } from "date-fns"; // Import date-fns
 import { Link } from "react-router-dom";
 
 function CampaignCard({

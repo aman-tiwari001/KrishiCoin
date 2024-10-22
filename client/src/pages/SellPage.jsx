@@ -59,7 +59,7 @@ const SellPage = () => {
 		// USD to Wei conversion
 
 		const totalPriceInETH =
-			parseFloat(data._pricePerQuintal) * parseFloat(exchangeRate);
+			(parseFloat(data._pricePerQuintal) * parseFloat(exchangeRate)).toFixed(18);
 		console.log('Total price in eth:', totalPriceInETH);
 		const totalPriceInWei = ethers.utils.parseEther(totalPriceInETH.toString());
 		console.log(
@@ -86,7 +86,7 @@ const SellPage = () => {
 			if (p2pContract) {
 				await handleListProducesOnChain({
 					_title: data.title,
-					_pricePerQuintal: parseInt(data.pricePerUnit),
+					_pricePerQuintal: parseFloat(data.pricePerUnit),
 					_totalStock: parseInt(data.quantity),
 					_listingId: listingId,
 					_maxDeliveryTime: parseInt(data.maxDeliveryTime || 30),
@@ -228,10 +228,11 @@ const SellPage = () => {
 							</label>
 							<input
 								type='number'
+								step='0.01'
 								{...register('pricePerUnit', {
 									required: 'Price per unit is required',
 									min: {
-										value: 1,
+										value: 0.01,
 										message: 'Price must be greater than 0',
 									},
 									onChange: (e) => setPrice(e.target.value),
