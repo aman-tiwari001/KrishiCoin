@@ -14,9 +14,9 @@ const BaseName = () => {
 	const handleCheckUser = async () => {
 		try {
 			const res = await checkUser(address);
-			localStorage.setItem('token', res.token);
-			localStorage.setItem('userId', res.user._id);
 			if (res.exist) {
+				localStorage.setItem('token', res.token);
+				localStorage.setItem('userId', res.user._id);
 				navigate('/home');
 			} else {
 				navigate('/register');

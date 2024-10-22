@@ -2,6 +2,7 @@ import { formatDistanceStrict, isPast } from 'date-fns';
 import { cwfContract } from '../../utils/contract';
 import toast from 'react-hot-toast';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function FundRaisers({
 	src,
@@ -69,7 +70,7 @@ function FundRaisers({
 					{donators_cnt} donators
 				</h3>
 				<dialog id={`my_modal_${id}`} className='modal'>
-					<div className='modal-box'>
+					<div className='modal-box bg-white'>
 						<h3 className='font-bold text-xl'>Supporters of this fundraiser</h3>
 						<div className='py-4'>
 							{donators_cnt > 0 ? (
@@ -99,7 +100,7 @@ function FundRaisers({
 								</table>
 							) : (
 								<div className='text-center mx-auto'>
-									<p className='border px-4 py-2 text-gray-500 font-semibold text-center'>
+									<p className='border px-4 py-2 text-white bg-green-500 font-semibold text-center'>
 										No supporters yet
 									</p>
 								</div>
@@ -107,12 +108,20 @@ function FundRaisers({
 						</div>
 						<p>Total amount collected : ${amt_collected}</p>
 						<div className='modal-action'>
-							<form method='dialog'>
+							<form method='dialog' className='flex gap-4'>
 								<button
-									className='btn bg-red-500 text-white hover:bg-red-600'
+									className='btn btn-success text-white'
 									onClick={handleWithdrawFunds}
 								>
 									Withdraw funds
+								</button>
+								<button
+									className='btn bg-red-500 text-white hover:bg-red-600'
+									onClick={() =>
+										document.getElementById(`my_modal_${id}`).close()
+									}
+								>
+									Cancel
 								</button>
 							</form>
 						</div>
@@ -149,6 +158,9 @@ function FundRaisers({
 					</div>
 					<p className='font-semibold'>funded</p>
 				</div>
+				<Link to={`/campaign/${id}`}>
+					<button className='btn text-white'>View Details</button>
+				</Link>
 			</div>
 		</div>
 	);
