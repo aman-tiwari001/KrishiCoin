@@ -9,9 +9,9 @@
 
 **KrishiCoin** is a peer-to-peer (P2P) and decentralized finance (DeFi) platform built on the **Base Blockchain (Ethereum L2)**. It empowers farmers and rural communities by offering a decentralized marketplace, crowdfunding opportunities, and secure financial solutions, all while addressing key issues in the agriculture sector.
 
-<a href='https://youtu.be/kvNMvvIIpbE?si=JIYzzw-gcnl03F4M'>Demo Video</a> |
-<a href='https://devfolio.co/projects/krishicoin-f265'>Devfolio Submission Link</a> | 
-<a href='https://krishicoin.vercel.app/blog'>Project Link</a> 
+<a href='https://youtu.be/kvNMvvIIpbE?si=JIYzzw-gcnl03F4M' target='_blank'>Demo Video</a> |
+<a href='https://devfolio.co/projects/krishicoin-f265' target='_blank'>Devfolio Submission Link</a> | 
+<a href='https://krishicoin.vercel.app/' target='_blank'>Project Link</a> 
 
 
 ## 🌟 Key Features
